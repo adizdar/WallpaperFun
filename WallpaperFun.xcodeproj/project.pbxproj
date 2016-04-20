@@ -33,6 +33,8 @@
 		6028ED3D1CC134D400A855DF /* SwipeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6028ED3C1CC134D400A855DF /* SwipeImageView.m */; };
 		6028ED401CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6028ED3F1CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.m */; };
 		608C606E1CBE741F00016597 /* ImageRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 608C606D1CBE741F00016597 /* ImageRealm.m */; };
+		60BDD7391CC52E8D00496C07 /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BDD7381CC52E8D00496C07 /* SearchView.m */; };
+		60BDD73C1CC6518C00496C07 /* CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BDD73B1CC6518C00496C07 /* CustomSearchBar.m */; };
 		60C8ED761CB90B13002BC9F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C8ED751CB90B13002BC9F6 /* main.m */; };
 		60C8ED791CB90B13002BC9F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C8ED781CB90B13002BC9F6 /* AppDelegate.m */; };
 		60C8ED7F1CB90B13002BC9F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60C8ED7D1CB90B13002BC9F6 /* Main.storyboard */; };
@@ -70,6 +72,10 @@
 		6028ED3F1CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+UrlToImageConverter.m"; sourceTree = "<group>"; };
 		608C606C1CBE741F00016597 /* ImageRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageRealm.h; path = Models/ImageRealm.h; sourceTree = "<group>"; };
 		608C606D1CBE741F00016597 /* ImageRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageRealm.m; path = Models/ImageRealm.m; sourceTree = "<group>"; };
+		60BDD7371CC52E8D00496C07 /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
+		60BDD7381CC52E8D00496C07 /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
+		60BDD73A1CC6518C00496C07 /* CustomSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchBar.h; sourceTree = "<group>"; };
+		60BDD73B1CC6518C00496C07 /* CustomSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchBar.m; sourceTree = "<group>"; };
 		60C8ED711CB90B13002BC9F6 /* WallpaperFun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallpaperFun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C8ED751CB90B13002BC9F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60C8ED771CB90B13002BC9F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -153,6 +159,17 @@
 			name = Image;
 			sourceTree = "<group>";
 		};
+		60BDD7361CC52E7300496C07 /* SearchComponent */ = {
+			isa = PBXGroup;
+			children = (
+				60BDD7371CC52E8D00496C07 /* SearchView.h */,
+				60BDD7381CC52E8D00496C07 /* SearchView.m */,
+				60BDD73A1CC6518C00496C07 /* CustomSearchBar.h */,
+				60BDD73B1CC6518C00496C07 /* CustomSearchBar.m */,
+			);
+			name = SearchComponent;
+			sourceTree = "<group>";
+		};
 		60C8ED681CB90B13002BC9F6 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +215,7 @@
 		60C8ED901CB90B58002BC9F6 /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				60BDD7361CC52E7300496C07 /* SearchComponent */,
 				6028ED411CC2F4A200A855DF /* SwipeComponent */,
 				6028ED351CBFE6E400A855DF /* SingleImageView.h */,
 				6028ED361CBFE6E400A855DF /* SingleImageView.m */,
@@ -437,6 +455,8 @@
 				6025F0301CBAC99C00133392 /* HomeScreenViewController.m in Sources */,
 				6028ED371CBFE6E400A855DF /* SingleImageView.m in Sources */,
 				6028ED311CBFA8E200A855DF /* UtillsClass.m in Sources */,
+				60BDD7391CC52E8D00496C07 /* SearchView.m in Sources */,
+				60BDD73C1CC6518C00496C07 /* CustomSearchBar.m in Sources */,
 				60C8ED791CB90B13002BC9F6 /* AppDelegate.m in Sources */,
 				608C606E1CBE741F00016597 /* ImageRealm.m in Sources */,
 				60C8ED821CB90B13002BC9F6 /* WallpaperFun.xcdatamodeld in Sources */,
@@ -572,7 +592,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WallpaperFun/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.wallpaperFun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -586,7 +606,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WallpaperFun/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.wallpaperFun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
