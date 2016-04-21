@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeScreenViewController : UIViewController
+@interface HomeScreenViewController : UIViewController<UISearchBarDelegate>
 
 @end
