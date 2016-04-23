@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <pop/POP.h>
+
 #import "SingleImageView.h"
 #import "NSMutableArray+UrlToImageConverter.h"
 #import "UtillsClass.h"
@@ -24,5 +25,10 @@
     @desription setter is made to set first element in the SwipeContainer
  */
 @property(nonatomic, strong) NSMutableArray *collection;
+
+/** Get current image 
+    @return SingleImageView subclassing UIView
+ */
+- (SingleImageView *)getCurrentImage;
 
 @end

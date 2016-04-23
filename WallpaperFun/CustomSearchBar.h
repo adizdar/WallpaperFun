@@ -22,4 +22,12 @@
  */
 - (UISearchBar *)getSearchBar;
 
+/** Dissmis searchBar 
+    @discussion Removes focus, clears text & hides Cancel button
+ */
+- (void)dissmisSearchBar;
+
+/** hide SearchBar with animation */
+- (void)hideSearchBar;
+
 @end

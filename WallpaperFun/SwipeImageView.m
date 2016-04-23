@@ -151,4 +151,9 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
     return opacityAnimation;
 }
 
+- (SingleImageView *)getCurrentImage
+{
+    return [self.collection getImageObjectAtIndex:[self.collection getCurrentObjectIndex]];
+}
+
 @end

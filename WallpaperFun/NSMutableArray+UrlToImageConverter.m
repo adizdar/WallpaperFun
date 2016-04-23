@@ -87,6 +87,10 @@ id currentObject = nil;
 - (void)resetCurrentObject
 {
     currentObject = nil;
+    
+    if ([self count] != 0 && [[self getImageObjectAtIndex: 0] isKindOfClass: [SingleImageView class]]) {
+        currentObject = [self objectAtIndex:0];
+    }
 }
 
 

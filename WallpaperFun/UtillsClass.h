@@ -64,4 +64,6 @@
 + (void)destroyLoadingIndicatorWithText: (UIView *)view
                             indicatorID: (NSInteger) indicatorID;
 
++ (void)toggleAfterTimeout: (UIView *)view;
+
 @end

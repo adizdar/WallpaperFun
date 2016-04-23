@@ -78,6 +78,16 @@
     [MBProgressHUD hideHUDForView:view animated:YES];
 }
 
++ (void)toggleAfterTimeout: (UIView *)view
+{
+    // TODO make it to call a selector here
+    
+    // hide modal after timeout
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+        [self hideModalHud: view];
+    });
+}
+
 #pragma mark - Private
 
 + (void)callMBHUD: (UIView *)view
@@ -92,6 +102,7 @@
         hud.mode = mode;
         hud.labelText = text;
         hud.tag = indicatorID;
+//        [hud setBackgroundColor:<#(UIColor * _Nullable)#>];
     } else if ([hud alpha] == 1.0) {
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){

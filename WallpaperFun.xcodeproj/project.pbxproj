@@ -39,8 +39,9 @@
 		60C8ED791CB90B13002BC9F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C8ED781CB90B13002BC9F6 /* AppDelegate.m */; };
 		60C8ED7F1CB90B13002BC9F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60C8ED7D1CB90B13002BC9F6 /* Main.storyboard */; };
 		60C8ED821CB90B13002BC9F6 /* WallpaperFun.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60C8ED801CB90B13002BC9F6 /* WallpaperFun.xcdatamodeld */; };
-		60C8ED841CB90B13002BC9F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60C8ED831CB90B13002BC9F6 /* Assets.xcassets */; };
 		60C8ED871CB90B13002BC9F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60C8ED851CB90B13002BC9F6 /* LaunchScreen.storyboard */; };
+		60EC3BA61CCA4924001464CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60EC3BA51CCA4924001464CB /* Assets.xcassets */; };
+		60EC3BAA1CCA614E001464CB /* MenuBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC3BA91CCA614E001464CB /* MenuBar.m */; };
 		D55B3F9240426BD46164CE2C /* libPods-WallpaperFun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C4F59DE3DBF454EEADF2E1 /* libPods-WallpaperFun.a */; };
 /* End PBXBuildFile section */
 
@@ -82,9 +83,11 @@
 		60C8ED781CB90B13002BC9F6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		60C8ED7E1CB90B13002BC9F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		60C8ED811CB90B13002BC9F6 /* WallpaperFun.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WallpaperFun.xcdatamodel; sourceTree = "<group>"; };
-		60C8ED831CB90B13002BC9F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60C8ED861CB90B13002BC9F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60C8ED881CB90B13002BC9F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60EC3BA51CCA4924001464CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		60EC3BA81CCA614E001464CB /* MenuBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuBar.h; sourceTree = "<group>"; };
+		60EC3BA91CCA614E001464CB /* MenuBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuBar.m; sourceTree = "<group>"; };
 		D3B667E20468EDB7C17E959D /* Pods-WallpaperFun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallpaperFun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WallpaperFun/Pods-WallpaperFun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +218,7 @@
 		60C8ED901CB90B58002BC9F6 /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				60EC3BA71CCA6113001464CB /* MenuBar */,
 				60BDD7361CC52E7300496C07 /* SearchComponent */,
 				6028ED411CC2F4A200A855DF /* SwipeComponent */,
 				6028ED351CBFE6E400A855DF /* SingleImageView.h */,
@@ -268,7 +272,7 @@
 		60C8ED951CB90C1F002BC9F6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				60C8ED831CB90B13002BC9F6 /* Assets.xcassets */,
+				60EC3BA51CCA4924001464CB /* Assets.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -296,6 +300,15 @@
 				6028ED301CBFA8E200A855DF /* UtillsClass.m */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		60EC3BA71CCA6113001464CB /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				60EC3BA81CCA614E001464CB /* MenuBar.h */,
+				60EC3BA91CCA614E001464CB /* MenuBar.m */,
+			);
+			name = MenuBar;
 			sourceTree = "<group>";
 		};
 		6FABB4C9E54BAC658AE7066B /* Pods */ = {
@@ -373,7 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C8ED871CB90B13002BC9F6 /* LaunchScreen.storyboard in Resources */,
-				60C8ED841CB90B13002BC9F6 /* Assets.xcassets in Resources */,
+				60EC3BA61CCA4924001464CB /* Assets.xcassets in Resources */,
 				60C8ED7F1CB90B13002BC9F6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,6 +476,7 @@
 				6025F0431CBBD76300133392 /* APIManager.m in Sources */,
 				6028ED3D1CC134D400A855DF /* SwipeImageView.m in Sources */,
 				60C8ED761CB90B13002BC9F6 /* main.m in Sources */,
+				60EC3BAA1CCA614E001464CB /* MenuBar.m in Sources */,
 				6025F03D1CBBC38100133392 /* SingleImageModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
