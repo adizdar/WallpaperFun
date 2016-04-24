@@ -13,12 +13,13 @@
 #import "ImageLibary.h"
 #import "SwipeImageView.h"
 #import "CustomSearchBar.h"
-#import "MenuBar.h"
+#import "TutorialView.h"
 
 @interface HomeScreenViewController ()
 @property (strong, nonatomic) SwipeImageView *imageSwipeFromCollection;
 @property (strong, nonatomic) CustomSearchBar *searchBar;
 @property (strong, nonatomic) MenuBar *menubar;
+@property (strong, nonatomic) TutorialView *tutorial;
 @end
 
 @implementation HomeScreenViewController
@@ -30,39 +31,32 @@ ImageLibary *libary;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
-    
+        
     SingleImageRequestModel *requestModel = [SingleImageRequestModel new];
     
     [UtillsClass toggleLoadingIndicatorWithText: @"Loading data, please wait..."
                                            view: self.view
                                     indicatorID: 102];
-    requestModel.query = @"flowers";
+    requestModel.query = @"hjasdas";
     
     [[APIManager sharedManager] getImagesWithRequestModel: requestModel
                                                   success: ^(SingleImageResponseModel *responseModel) {
                                                       dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                                           @autoreleasepool {
-                                                              //                                                              RLMRealm *realm = [RLMRealm defaultRealm];
-                                                              //
-                                                              //                                                              [realm beginWriteTransaction];
-                                                              //                                                              [realm deleteAllObjects];
-                                                              //                                                              [realm commitWriteTransaction];
-                                                              //                                                              [realm beginWriteTransaction];
-                                                              
-                                                              //                                                              NSData *imageData;
                                                               NSMutableArray *mutableImageCollection = [[NSMutableArray alloc] init];
                                                               [mutableImageCollection addObjectsFromArray: responseModel.collection];
-                                                              //
-                                                              //                                                              for (SingleImageModel *imageModel in responseModel.collection) {
-                                                              //                                                                  imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageModel.url]];
-                                                              //                                                                  [mutableImageCollection addObject: [[SingleImageView alloc] initWithImageData:imageData]];
-                                                              //                                                              }
                                                               
                                                               dispatch_async(dispatch_get_main_queue(), ^{
                                                                   [UtillsClass toggleLoadingIndicator: self.view
                                                                                           indicatorID: 102];
                                                                   
                                                                   self.imageSwipeFromCollection.collection = mutableImageCollection;
+                                                                  
+                                                                  //** trigger tutorial screen only once when the app starts for the first time
+                                                                  if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
+                                                                      [self showTutorialScreen];
+                                                                      [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
+                                                                  }
                                                               });
                                                               
                                                           }
@@ -99,6 +93,7 @@ ImageLibary *libary;
     //** Menu Bar
     self.menubar = [[MenuBar alloc] init];
     self.menubar.hidden = YES;
+    self.menubar.delegate = self;
     
     //** Gesture init
     [self initSwipeDownGesture];
@@ -129,6 +124,7 @@ ImageLibary *libary;
                        options: UIViewAnimationOptionTransitionCrossDissolve
                     animations: ^{
                         self.searchBar.hidden = !self.searchBar.hidden;
+                        self.menubar.hidden = YES;
                     }
                     completion:^(BOOL finished) {
                         if (self.searchBar.hidden) [self.searchBar dissmisSearchBar];
@@ -152,6 +148,7 @@ ImageLibary *libary;
                        options: UIViewAnimationOptionTransitionCrossDissolve
                     animations: ^{
                         self.menubar.hidden = !self.menubar.hidden;
+                        self.searchBar.hidden = YES;
                     }
                     completion: nil];
 }
@@ -185,6 +182,17 @@ ImageLibary *libary;
 }
 
 #pragma mark - Custom Accessors
+
+- (TutorialView *)tutorial
+{
+    // Lazy loading
+    if (!_tutorial) {
+        self.tutorial = [[TutorialView alloc] init];
+        [self.view addSubview: self.tutorial];
+    }
+    
+    return _tutorial;
+}
 
 #pragma mark - IBActions
 
@@ -234,6 +242,20 @@ ImageLibary *libary;
 
 }
 
+- (void)showTutorialScreen
+{
+    //** outside of the animation block so we can trigger the animation
+    self.tutorial.alpha = 0;
+    self.tutorial.hidden = NO;
+    
+    [UIView animateWithDuration: 0.3f
+                     animations:^{
+                         self.tutorial.alpha = 1.0f;
+                         self.menubar.hidden = YES;
+                         self.searchBar.hidden = YES;
+                     } completion: nil];
+}
+
 #pragma mark - UISearchBar delegate
 
 //** Search Action
@@ -256,6 +278,13 @@ ImageLibary *libary;
 {
     [self.searchBar dissmisSearchBar];
     [self.searchBar hideSearchBar];
+}
+
+#pragma mark - MenuBar delegate
+
+- (void) helpButtonTap:(UIButton *)sender
+{
+    [self showTutorialScreen];
 }
 
 #pragma mark - UISearchBar methods

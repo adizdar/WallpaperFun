@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/SwipeImageView.m"
-            timestampString = "482930773.748436"
+            timestampString = "483193422.032385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "-swipeLeftHandler:"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/SwipeImageView.m"
-            timestampString = "482930773.748436"
+            timestampString = "483193422.032385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-swipeLeftHandler:"
             landmarkType = "5">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/NSMutableArray+UrlToImageConverter.m"
-            timestampString = "482617457.617393"
+            timestampString = "483193776.462458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "-getNextObject"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/NSMutableArray+UrlToImageConverter.m"
-            timestampString = "482617457.617393"
+            timestampString = "483193776.462458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "-getNextObject"
             landmarkType = "5">
          </BreakpointContent>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/NSMutableArray+UrlToImageConverter.m"
-            timestampString = "482617457.617393"
+            timestampString = "483193776.462458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "-getNextObject"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/NSMutableArray+UrlToImageConverter.m"
-            timestampString = "482617457.617393"
+            timestampString = "483193835.773475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-getPreviousObject"
             landmarkType = "5">
          </BreakpointContent>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/NSMutableArray+UrlToImageConverter.m"
-            timestampString = "482617457.617393"
+            timestampString = "483193835.773475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-getPreviousObject"
             landmarkType = "5">
          </BreakpointContent>
@@ -474,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/NSMutableArray+UrlToImageConverter.m"
-            timestampString = "482617457.617393"
+            timestampString = "483193776.462458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-getNextObject"
             landmarkType = "5">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/NSMutableArray+UrlToImageConverter.m"
-            timestampString = "482617457.617393"
+            timestampString = "483193835.773475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-getPreviousObject"
             landmarkType = "5">
          </BreakpointContent>
@@ -506,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/NSMutableArray+UrlToImageConverter.m"
-            timestampString = "482617457.617393"
+            timestampString = "483193776.462458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "-getNextObject"
             landmarkType = "5">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/HomeScreenViewController.m"
-            timestampString = "483098920.191961"
+            timestampString = "483193919.341311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-searchForImages:"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/HomeScreenViewController.m"
-            timestampString = "483098920.191961"
+            timestampString = "483193919.341311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "-searchForImages:"
             landmarkType = "5">
          </BreakpointContent>
@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/SwipeImageView.m"
-            timestampString = "482930773.748436"
+            timestampString = "483193422.032385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "-swipeRightHandler:"
             landmarkType = "5">
          </BreakpointContent>
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/SwipeImageView.m"
-            timestampString = "482930773.748436"
+            timestampString = "483193422.032385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "-addSubviewToSlider:"
             landmarkType = "5">
          </BreakpointContent>
@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/SwipeImageView.m"
-            timestampString = "482930773.748436"
+            timestampString = "483193422.032385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-setCollection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/SwipeImageView.m"
-            timestampString = "482930773.748436"
+            timestampString = "483193422.032385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "-setCollection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -618,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/SwipeImageView.m"
-            timestampString = "482930773.748436"
+            timestampString = "483193422.032385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-setCollection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -634,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/SwipeImageView.m"
-            timestampString = "482930773.748436"
+            timestampString = "483193422.032385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "-setCollection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -714,11 +714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/HomeScreenViewController.m"
-            timestampString = "483098920.191961"
+            timestampString = "483193919.341311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "-searchBarSearchButtonClicked:"
             landmarkType = "5">
          </BreakpointContent>
@@ -730,11 +730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/SwipeImageView.m"
-            timestampString = "482930659.660739"
+            timestampString = "483193422.032385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "-getCurrentImage"
             landmarkType = "5">
          </BreakpointContent>
@@ -746,11 +746,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/HomeScreenViewController.m"
-            timestampString = "483026552.545532"
+            timestampString = "483193919.341311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "-longPressGesture:"
             landmarkType = "5">
          </BreakpointContent>
@@ -762,11 +762,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/NSMutableArray+UrlToImageConverter.m"
-            timestampString = "482931435.352597"
+            timestampString = "483193835.773475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-getCurrentObjectIndex"
             landmarkType = "5">
          </BreakpointContent>
@@ -778,11 +778,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/NSMutableArray+UrlToImageConverter.m"
-            timestampString = "482931452.399751"
+            timestampString = "483193835.773475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "-resetCurrentObject"
             landmarkType = "5">
          </BreakpointContent>
@@ -794,11 +794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/SwipeImageView.m"
-            timestampString = "482931618.124286"
+            timestampString = "483193422.032385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "-setCollection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -810,11 +810,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/MenuBar.m"
-            timestampString = "483026070.559193"
+            timestampString = "483140819.405247"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
@@ -826,11 +826,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WallpaperFun/HomeScreenViewController.m"
-            timestampString = "483026552.545532"
+            timestampString = "483193919.341311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "-swipeUpGesture:"
             landmarkType = "5">
          </BreakpointContent>

@@ -7,6 +7,7 @@
 //
 
 #import "SwipeImageView.h"
+#define DEFAULT_IMAGE @"bg"
 
 @implementation SwipeImageView
 
@@ -30,6 +31,9 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
     
     if (self.collection && [self.collection count]!=0) {
         [self addSubview: [self.collection getImageObjectAtIndex: 0]];
+    } else {
+        [self addSubview: [[SingleImageView alloc] initWithImageData: UIImagePNGRepresentation([UIImage imageNamed: DEFAULT_IMAGE])
+                                                           imageName: @"bg"]];
     }
     
     return self;
@@ -45,6 +49,9 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
     if (self.collection && [self.collection count]!=0) {
         [self.collection resetCurrentObject]; // TODO find better way to reset this
         [self addSubview: [self.collection getImageObjectAtIndex: 0]];
+    } else {
+        [self addSubview: [[SingleImageView alloc] initWithImageData: UIImagePNGRepresentation([UIImage imageNamed: DEFAULT_IMAGE])
+                                                           imageName: @"bg"]];
     }
 }
 

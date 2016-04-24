@@ -39,6 +39,8 @@ id currentObject = nil;
 {
     NSUInteger index = 0;
     
+    if(!self.count) return nil;
+    
     if (!currentObject) {
         currentObject = [self objectAtIndex:0];
     }
@@ -60,6 +62,8 @@ id currentObject = nil;
 - (id)getPreviousObject
 {
     NSUInteger index = 0;
+    
+    if(!self.count) return nil;
     
     if (!currentObject) {
         currentObject = [self objectAtIndex:0];

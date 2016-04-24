@@ -8,8 +8,9 @@
 
 #import <AudioToolbox/AudioToolbox.h>
 #import <UIKit/UIKit.h>
+#import "MenuBar.h"
 
-@interface HomeScreenViewController : UIViewController<UISearchBarDelegate, UIViewControllerPreviewingDelegate>
+@interface HomeScreenViewController : UIViewController<UISearchBarDelegate, UIViewControllerPreviewingDelegate, MenuBarProtocolDelegate>
 
 /** Long Press recognizer */
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPress;

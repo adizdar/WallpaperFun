@@ -7,7 +7,7 @@
 //
 
 /** Image model that stores data from the API
-  @discussion Realm DB used
+  @discussion Realm DB - REALM IS NOT USED IN THIS VERSION OF THE APP
  */
 #import <Realm/Realm.h>
 #import "SingleImageModel.h"

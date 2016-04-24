@@ -10,6 +10,8 @@
 
 @implementation MenuBar
 
+@synthesize delegate;
+
 - (instancetype) init
 {
     self = [super init];
@@ -129,6 +131,11 @@
     favoritesButton.imageView.contentMode = UIViewContentModeCenter;
     favoritesButton.center = CGPointMake(width/1.4, height - aboutButton.frame.size.height);
     
+    //**** Action */
+    [helpButton addTarget: self.delegate
+                   action: @selector(helpButtonTap:)
+         forControlEvents: UIControlEventTouchUpInside];
+    
     //** Add Subviews
     [self addSubview: helpButton];
     [self addSubview: aboutButton];
@@ -159,6 +166,8 @@
                     }
                     completion: nil];
 }
+
+
 
 
 @end

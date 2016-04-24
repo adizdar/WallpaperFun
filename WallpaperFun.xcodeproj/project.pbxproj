@@ -42,6 +42,7 @@
 		60C8ED871CB90B13002BC9F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60C8ED851CB90B13002BC9F6 /* LaunchScreen.storyboard */; };
 		60EC3BA61CCA4924001464CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60EC3BA51CCA4924001464CB /* Assets.xcassets */; };
 		60EC3BAA1CCA614E001464CB /* MenuBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC3BA91CCA614E001464CB /* MenuBar.m */; };
+		60EC3BAE1CCBE7CE001464CB /* TutorialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC3BAD1CCBE7CE001464CB /* TutorialView.m */; };
 		D55B3F9240426BD46164CE2C /* libPods-WallpaperFun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C4F59DE3DBF454EEADF2E1 /* libPods-WallpaperFun.a */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,8 @@
 		60EC3BA51CCA4924001464CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60EC3BA81CCA614E001464CB /* MenuBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuBar.h; sourceTree = "<group>"; };
 		60EC3BA91CCA614E001464CB /* MenuBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuBar.m; sourceTree = "<group>"; };
+		60EC3BAC1CCBE7CE001464CB /* TutorialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialView.h; sourceTree = "<group>"; };
+		60EC3BAD1CCBE7CE001464CB /* TutorialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialView.m; sourceTree = "<group>"; };
 		D3B667E20468EDB7C17E959D /* Pods-WallpaperFun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallpaperFun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WallpaperFun/Pods-WallpaperFun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +221,7 @@
 		60C8ED901CB90B58002BC9F6 /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				60EC3BAB1CCBE7BB001464CB /* TutorialView */,
 				60EC3BA71CCA6113001464CB /* MenuBar */,
 				60BDD7361CC52E7300496C07 /* SearchComponent */,
 				6028ED411CC2F4A200A855DF /* SwipeComponent */,
@@ -309,6 +313,15 @@
 				60EC3BA91CCA614E001464CB /* MenuBar.m */,
 			);
 			name = MenuBar;
+			sourceTree = "<group>";
+		};
+		60EC3BAB1CCBE7BB001464CB /* TutorialView */ = {
+			isa = PBXGroup;
+			children = (
+				60EC3BAC1CCBE7CE001464CB /* TutorialView.h */,
+				60EC3BAD1CCBE7CE001464CB /* TutorialView.m */,
+			);
+			name = TutorialView;
 			sourceTree = "<group>";
 		};
 		6FABB4C9E54BAC658AE7066B /* Pods */ = {
@@ -477,6 +490,7 @@
 				6028ED3D1CC134D400A855DF /* SwipeImageView.m in Sources */,
 				60C8ED761CB90B13002BC9F6 /* main.m in Sources */,
 				60EC3BAA1CCA614E001464CB /* MenuBar.m in Sources */,
+				60EC3BAE1CCBE7CE001464CB /* TutorialView.m in Sources */,
 				6025F03D1CBBC38100133392 /* SingleImageModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

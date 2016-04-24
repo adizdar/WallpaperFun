@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "UtillsClass.h"
 
+@protocol MenuBarProtocolDelegate <NSObject>
+
+@optional
+- (void) helpButtonTap:(UIButton *)sender;
+
+@end
+
 /** Navigation bar */
 @interface MenuBar : UIView
+
+@property (nonatomic, assign) id <MenuBarProtocolDelegate> delegate;
 
 /** Hide MenuBar with animation */
 - (void)hideWithAnimation;
