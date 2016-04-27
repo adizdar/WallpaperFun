@@ -44,7 +44,7 @@
     // initialize only once
     dispatch_once(&onceToken, ^{
         tutorial = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"tutorial"]];
-        tutorial.contentMode = UIViewContentModeScaleAspectFit;
+//        tutorial.contentMode = UIViewContentModeScaleAspectFill;
         tutorial.frame = self.frame;
     });
     

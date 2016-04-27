@@ -62,16 +62,24 @@
     [swich setOnTintColor: [self getBasicTextColor]];
     swich.on = YES;
     swich.clipsToBounds = YES;
-    swich.center = CGPointMake(width/2, height/2.9);
+    swich.center = CGPointMake(width/2, height/2.35);
     
     //** Swich labels
     //*** Top Label */
-    UILabel *topSwichText = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 110, 35)];
+    UILabel *topSwichText = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 245, 50)];
     
-    [topSwichText setText: @"Preview Screen"];
+    [topSwichText setText: [NSString stringWithFormat: @"%@", @"Preview Screen \n (double tap on Screen to activate it)"]];
     [topSwichText setTextColor: [self getBasicTextColor]];
     [topSwichText setFont: [UIFont boldSystemFontOfSize: 14]];
     topSwichText.center = CGPointMake(swich.center.x, swich.center.y/2.5);
+    topSwichText.numberOfLines = 0;
+    topSwichText.textAlignment = NSTextAlignmentCenter;
+
+    //*** Style title text */
+    NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString: topSwichText.text];
+    [titleText addAttribute: NSForegroundColorAttributeName value: [UIColor lightGrayColor] range: NSMakeRange( 17, 37 )];
+    [titleText addAttribute: NSFontAttributeName value:[UIFont fontWithName:@"Helvetica" size:10.0] range: NSMakeRange( 17, 37 )];
+    topSwichText.attributedText = titleText;
     
     //*** Left Label */
     UILabel *leftSwichLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 40, 35)];
@@ -107,7 +115,7 @@
     aboutButton.layer.cornerRadius = 10;
     aboutButton.imageEdgeInsets = UIEdgeInsetsMake(5, 2, 2, 2);
     aboutButton.imageView.contentMode = UIViewContentModeCenter;
-    aboutButton.center = CGPointMake(width/3.5, height - aboutButton.frame.size.height);
+    aboutButton.center = CGPointMake(width/3.5, height - aboutButton.frame.size.height+7);
     
     //*** Help */
     UIButton *helpButton = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 50, 50)];
@@ -118,7 +126,7 @@
     helpButton.layer.cornerRadius = 10;
     helpButton.imageEdgeInsets = UIEdgeInsetsMake(3, 2, 2, 2);
     helpButton.imageView.contentMode = UIViewContentModeCenter;
-    helpButton.center = CGPointMake(width/2, height - aboutButton.frame.size.height);
+    helpButton.center = CGPointMake(width/2, height - aboutButton.frame.size.height+7);
     
     //*** Favorites */
     UIButton *favoritesButton = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 50, 50)];
@@ -129,7 +137,7 @@
     favoritesButton.layer.cornerRadius = 10;
     favoritesButton.imageEdgeInsets = UIEdgeInsetsMake(3, 2, 2, 2);
     favoritesButton.imageView.contentMode = UIViewContentModeCenter;
-    favoritesButton.center = CGPointMake(width/1.4, height - aboutButton.frame.size.height);
+    favoritesButton.center = CGPointMake(width/1.4, height - aboutButton.frame.size.height+7);
     
     //**** Action */
     [helpButton addTarget: self.delegate

@@ -13,6 +13,12 @@
 #import "NSMutableArray+UrlToImageConverter.h"
 #import "UtillsClass.h"
 
+@protocol SwipeImageViewProtocol <NSObject>
+
+@optional
+- (void)imageChanged: (UIImage *)image;
+@end
+
 /** Conteiner to manage swipe left and right od items */
 @interface SwipeImageView : UIView
 
@@ -30,5 +36,7 @@
     @return SingleImageView subclassing UIView
  */
 - (SingleImageView *)getCurrentImage;
+
+@property (nonatomic, assign) id <SwipeImageViewProtocol> delegate;
 
 @end

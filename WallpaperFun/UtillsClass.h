@@ -64,6 +64,36 @@
 + (void)destroyLoadingIndicatorWithText: (UIView *)view
                             indicatorID: (NSInteger) indicatorID;
 
+/** Toggle Modal View after Timeout 
+    @parameter view as UIView
+ */
 + (void)toggleAfterTimeout: (UIView *)view;
+
+/** Get Red component from color (RGB format) 
+    @description The RGB value goes from 0 - 1, where 1 is white and 0 is black
+    @parameter color as UIColor
+ */
++ (CGFloat)red: (UIColor *)color;
+
+/** Get Blue component from color (RGB format)
+ @description The RGB value goes from 0 - 1, where 1 is white and 0 is black
+ @parameter color as UIColor
+ */
++ (CGFloat)blue: (UIColor *)color;
+
+/** Get Green component from color (RGB format)
+ @description The RGB value goes from 0 - 1, where 1 is white and 0 is black
+ @parameter color as UIColor
+ */
++ (CGFloat)green: (UIColor *)color;
+
+/** Get Alpha component from color (RGB format)
+ @description The Alpha value goes from 0 - 1, where 1 is visible and 0 is hidden
+ @parameter color as UIColor
+ */
++ (CGFloat)alpha: (UIColor *)color;
+
+
+
 
 @end

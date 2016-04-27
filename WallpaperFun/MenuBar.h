@@ -13,7 +13,6 @@
 
 @optional
 - (void) helpButtonTap:(UIButton *)sender;
-
 @end
 
 /** Navigation bar */

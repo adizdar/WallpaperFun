@@ -11,15 +11,16 @@
 #import "ImageRealm.h"
 #import "UtillsClass.h"
 #import "ImageLibary.h"
-#import "SwipeImageView.h"
 #import "CustomSearchBar.h"
 #import "TutorialView.h"
+#import "PreviewView.h"
 
 @interface HomeScreenViewController ()
 @property (strong, nonatomic) SwipeImageView *imageSwipeFromCollection;
 @property (strong, nonatomic) CustomSearchBar *searchBar;
 @property (strong, nonatomic) MenuBar *menubar;
 @property (strong, nonatomic) TutorialView *tutorial;
+@property (strong, nonatomic) PreviewView *previewView;
 @end
 
 @implementation HomeScreenViewController
@@ -31,42 +32,42 @@ ImageLibary *libary;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
-        
-    SingleImageRequestModel *requestModel = [SingleImageRequestModel new];
     
-    [UtillsClass toggleLoadingIndicatorWithText: @"Loading data, please wait..."
-                                           view: self.view
-                                    indicatorID: 102];
-    requestModel.query = @"hjasdas";
-    
-    [[APIManager sharedManager] getImagesWithRequestModel: requestModel
-                                                  success: ^(SingleImageResponseModel *responseModel) {
-                                                      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                                          @autoreleasepool {
-                                                              NSMutableArray *mutableImageCollection = [[NSMutableArray alloc] init];
-                                                              [mutableImageCollection addObjectsFromArray: responseModel.collection];
-                                                              
-                                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                                  [UtillsClass toggleLoadingIndicator: self.view
-                                                                                          indicatorID: 102];
-                                                                  
-                                                                  self.imageSwipeFromCollection.collection = mutableImageCollection;
-                                                                  
-                                                                  //** trigger tutorial screen only once when the app starts for the first time
-                                                                  if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
-                                                                      [self showTutorialScreen];
-                                                                      [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
-                                                                  }
-                                                              });
-                                                              
-                                                          }
-                                                          
-                                                      });
-                                                      
-                                                      
-                                                  } failure: ^(NSError *error) {
-                                                      NSLog(@"%@", error);
-                                                  }];
+//    SingleImageRequestModel *requestModel = [SingleImageRequestModel new];
+//    
+//    [UtillsClass toggleLoadingIndicatorWithText: @"Loading data, please wait..."
+//                                           view: self.view
+//                                    indicatorID: 102];
+//    requestModel.query = @"hjasdas";
+//    
+//    [[APIManager sharedManager] getImagesWithRequestModel: requestModel
+//                                                  success: ^(SingleImageResponseModel *responseModel) {
+//                                                      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                                                          @autoreleasepool {
+//                                                              NSMutableArray *mutableImageCollection = [[NSMutableArray alloc] init];
+//                                                              [mutableImageCollection addObjectsFromArray: responseModel.collection];
+//                                                              
+//                                                              dispatch_async(dispatch_get_main_queue(), ^{
+//                                                                  [UtillsClass toggleLoadingIndicator: self.view
+//                                                                                          indicatorID: 102];
+//                                                                  
+//                                                                  self.imageSwipeFromCollection.collection = mutableImageCollection;
+//                                                                  
+//                                                                  //** trigger tutorial screen only once when the app starts for the first time
+//                                                                  if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
+//                                                                      [self showTutorialScreen];
+//                                                                      [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
+//                                                                  }
+//                                                              });
+//                                                              
+//                                                          }
+//                                                          
+//                                                      });
+//                                                      
+//                                                      
+//                                                  } failure: ^(NSError *error) {
+//                                                      NSLog(@"%@", error);
+//                                                  }];
     
 }
 
@@ -84,7 +85,7 @@ ImageLibary *libary;
     
     self.imageSwipeFromCollection = [[SwipeImageView alloc] initWithCollection: nil];
     self.imageSwipeFromCollection.frame = frame;
-    [self.view addSubview: self.imageSwipeFromCollection];
+    self.imageSwipeFromCollection.delegate = self;
     
     //** Search Bar
     self.searchBar = [[CustomSearchBar alloc] initWithDelegate: self];
@@ -98,12 +99,21 @@ ImageLibary *libary;
     //** Gesture init
     [self initSwipeDownGesture];
     [self initSwipeUpGesture];
+    [self initDoubleTapGesture];
+    [self initTapGesture];
     self.longPress.enabled = YES;
     
     //** Image libary
     libary = [[ImageLibary alloc] init];
     
-    //** Add Subviews
+    //** Preview View
+    self.previewView.hidden = YES;
+//    UIView *test = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 90, 90)];
+//    BOOL color = [self.previewView isImageDark: [UIImage imageNamed: @"bg"]];
+    
+    //** Add Subviews (Order is important)
+    [self.view addSubview: self.imageSwipeFromCollection];
+    [self.view addSubview: self.previewView];
     [self.view addSubview: self.searchBar];
     [self.view addSubview: self.menubar];
 }
@@ -181,6 +191,39 @@ ImageLibary *libary;
     }
 }
 
+- (void)initTapGesture
+{
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOneTapGesture:)];
+    tapGesture.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)handleOneTapGesture:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        if ( !self.searchBar.hidden ) {
+            [self.searchBar dissmisSearchBar];
+            [self.searchBar hideSearchBar];
+        }
+        
+        if ( !self.menubar.hidden ) {
+            [self.menubar hideWithAnimation];
+        }
+    }
+}
+
+- (void)initDoubleTapGesture
+{
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    tapGesture.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        [self togglePreviewScreen];
+    }
+}
+
 #pragma mark - Custom Accessors
 
 - (TutorialView *)tutorial
@@ -192,6 +235,15 @@ ImageLibary *libary;
     }
     
     return _tutorial;
+}
+
+- (PreviewView *)previewView
+{
+    if (!_previewView) {
+        _previewView = [[PreviewView alloc] init];
+    }
+    
+    return _previewView;
 }
 
 #pragma mark - IBActions
@@ -256,6 +308,21 @@ ImageLibary *libary;
                      } completion: nil];
 }
 
+- (void)togglePreviewScreen
+{
+    self.tutorial.hidden = YES;
+    self.menubar.hidden = YES;
+    self.searchBar.hidden = YES;
+    
+    [UIView transitionWithView: self.previewView
+                      duration: 0.5f
+                       options: UIViewAnimationOptionTransitionCrossDissolve
+                    animations: ^{
+                        self.previewView.hidden = !self.previewView.hidden;
+                    }
+                    completion: nil];
+}
+
 #pragma mark - UISearchBar delegate
 
 //** Search Action
@@ -287,7 +354,59 @@ ImageLibary *libary;
     [self showTutorialScreen];
 }
 
+#pragma mark - SwipeImageView delegate
+
+- (void)imageChanged: (UIImage *)image
+{
+    [self.previewView setPreviewImage: image];
+}
+
 #pragma mark - UISearchBar methods
+
+//- (void)captureAndSaveImage
+//{
+//    float width = [UIScreen mainScreen].bounds.size.width;
+//    float height = [UIScreen mainScreen].bounds.size.height;
+//    // Capture screen here... and cut the appropriate size for saving and uploading
+//    UIGraphicsBeginImageContext(self.view.bounds.size);
+//    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    UIImageView *previewView = [[UIImageView alloc] init ];
+//    
+//    // crop the area you want
+//    CGRect rect;
+//    rect = CGRectMake(0, 10, 300, 300);    // whatever you want
+//    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
+//    UIImage *img = [UIImage imageWithCGImage:imageRef];
+//    CGImageRelease(imageRef);
+//    UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+//    
+//    previewView.image = img; // show cropped image on the ImageView
+//    previewView.frame = CGRectMake(0, 25, width, height-25);
+//    [self.view addSubview: previewView];
+//
+//}
+//
+//// this is option to alert the image saving status
+//- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+//{
+//    UIAlertView *alert;
+//    
+//    // Unable to save the image
+//    if (error)
+//        alert = [[UIAlertView alloc] initWithTitle:@"Error"
+//                                           message:@"Unable to save image to Photo Album."
+//                                          delegate:self cancelButtonTitle:@"Dismiss"
+//                                 otherButtonTitles:nil];
+//    else // All is well
+//        alert = [[UIAlertView alloc] initWithTitle:@"Success"
+//                                           message:@"Image saved to Photo Album."
+//                                          delegate:self cancelButtonTitle:@"Ok"
+//                                 otherButtonTitles:nil];
+//    [alert show];
+//}
+
 
 @end
 

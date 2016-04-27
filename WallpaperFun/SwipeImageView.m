@@ -7,7 +7,9 @@
 //
 
 #import "SwipeImageView.h"
-#define DEFAULT_IMAGE @"bg"
+#import "PreviewView.h"
+
+#define DEFAULT_IMAGE @"bgwf"
 
 @implementation SwipeImageView
 
@@ -132,7 +134,10 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
                     animations: ^{
                         [self addSubview: imageView];
                     }
-                    completion:nil];
+                    completion:^(BOOL finished) {
+                        //** Notify the delegate that the image changed
+                        [self.delegate imageChanged: imageView.image];
+                    }];
 
 }
 

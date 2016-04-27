@@ -8,6 +8,10 @@
 
 #import "UtillsClass.h"
 
+typedef NS_ENUM (NSInteger, UIColorComponentIndices) {
+    R, G, B, A
+};
+
 @implementation UtillsClass
 
 #pragma mark - Public
@@ -86,6 +90,26 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
         [self hideModalHud: view];
     });
+}
+
++ (CGFloat)red: (UIColor *)color
+{
+    return CGColorGetComponents(color.CGColor)[R];
+}
+
++ (CGFloat)green: (UIColor *)color
+{
+    return CGColorGetComponents(color.CGColor)[G];
+}
+
++ (CGFloat)blue: (UIColor *)color
+{
+    return CGColorGetComponents(color.CGColor)[B];
+}
+
++ (CGFloat)alpha: (UIColor *)color
+{
+    return CGColorGetComponents(color.CGColor)[A];
 }
 
 #pragma mark - Private
