@@ -146,6 +146,10 @@
     favoritesButton.center = CGPointMake(width/1.4, height - aboutButton.frame.size.height+7);
     
     //**** Action */
+    [aboutButton addTarget: self.delegate
+                    action: @selector(aboutButtonTap:)
+          forControlEvents: UIControlEventTouchUpInside];
+    
     [helpButton addTarget: self.delegate
                    action: @selector(helpButtonTap:)
          forControlEvents: UIControlEventTouchUpInside];

@@ -14,6 +14,8 @@
 #import "CustomSearchBar.h"
 #import "TutorialView.h"
 #import "PreviewView.h"
+#import "AppDelegate.h"
+#import "ModalView.h"
 
 @interface HomeScreenViewController ()
 @property (strong, nonatomic) SwipeImageView *imageSwipeFromCollection;
@@ -21,6 +23,7 @@
 @property (strong, nonatomic) MenuBar *menubar;
 @property (strong, nonatomic) TutorialView *tutorial;
 @property (strong, nonatomic) PreviewView *previewView;
+@property (strong, nonatomic) ModalView *modalView;
 @end
 
 @implementation HomeScreenViewController
@@ -114,6 +117,7 @@ ImageLibary *libary;
     [self.view addSubview: self.previewView];
     [self.view addSubview: self.searchBar];
     [self.view addSubview: self.menubar];
+    [self.view addSubview: self.modalView];
 }
 
 - (void)initSwipeDownGesture
@@ -244,6 +248,16 @@ ImageLibary *libary;
     return _previewView;
 }
 
+- (ModalView *)modalView
+{
+    if (!_modalView) {
+        _modalView = [[ModalView alloc] init];
+        _modalView.hidden = YES;
+    }
+    
+    return _modalView;
+}
+
 #pragma mark - IBActions
 
 #pragma mark - Public
@@ -297,8 +311,8 @@ ImageLibary *libary;
     //** outside of the animation block so we can trigger the animation
     self.tutorial.alpha = 0;
     self.tutorial.hidden = NO;
-    
-    [UIView animateWithDuration: 0.3f
+
+    [UIView animateWithDuration: 0.2f
                      animations:^{
                          self.tutorial.alpha = 1.0f;
                          self.menubar.hidden = YES;
@@ -346,6 +360,19 @@ ImageLibary *libary;
 }
 
 #pragma mark - MenuBar delegate
+
+- (void) aboutButtonTap: (UIButton *)sender
+{
+    [UIView transitionWithView: self.modalView
+                      duration: 0.2f
+                       options: UIViewAnimationOptionTransitionCurlDown
+                    animations: ^{
+                        self.searchBar.hidden = YES;
+                        self.menubar.hidden = YES;
+                        self.modalView.hidden = NO;
+                    }
+                    completion: nil];
+}
 
 - (void)helpButtonTap:(UIButton *)sender
 {

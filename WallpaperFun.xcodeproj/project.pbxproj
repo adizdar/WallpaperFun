@@ -45,6 +45,7 @@
 		60EC3BAE1CCBE7CE001464CB /* TutorialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC3BAD1CCBE7CE001464CB /* TutorialView.m */; };
 		60EC3BB01CCD0263001464CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60EC3BAF1CCD0263001464CB /* Images.xcassets */; };
 		60EC3BB31CCE3106001464CB /* PreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC3BB21CCE3106001464CB /* PreviewView.m */; };
+		60EC3BBE1CD2425B001464CB /* ModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EC3BBD1CD2425B001464CB /* ModalView.m */; };
 		D55B3F9240426BD46164CE2C /* libPods-WallpaperFun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C4F59DE3DBF454EEADF2E1 /* libPods-WallpaperFun.a */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,8 @@
 		60EC3BAF1CCD0263001464CB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		60EC3BB11CCE3106001464CB /* PreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewView.h; sourceTree = "<group>"; };
 		60EC3BB21CCE3106001464CB /* PreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewView.m; sourceTree = "<group>"; };
+		60EC3BBC1CD2425B001464CB /* ModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalView.h; sourceTree = "<group>"; };
+		60EC3BBD1CD2425B001464CB /* ModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalView.m; sourceTree = "<group>"; };
 		D3B667E20468EDB7C17E959D /* Pods-WallpaperFun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallpaperFun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WallpaperFun/Pods-WallpaperFun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,6 +230,7 @@
 		60C8ED901CB90B58002BC9F6 /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
+				60EC3BBB1CD24231001464CB /* Modal */,
 				60EC3BB41CCE719E001464CB /* PreviewView */,
 				60EC3BAB1CCBE7BB001464CB /* TutorialView */,
 				60EC3BA71CCA6113001464CB /* MenuBar */,
@@ -338,6 +342,15 @@
 				60EC3BB21CCE3106001464CB /* PreviewView.m */,
 			);
 			name = PreviewView;
+			sourceTree = "<group>";
+		};
+		60EC3BBB1CD24231001464CB /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				60EC3BBC1CD2425B001464CB /* ModalView.h */,
+				60EC3BBD1CD2425B001464CB /* ModalView.m */,
+			);
+			name = Modal;
 			sourceTree = "<group>";
 		};
 		6FABB4C9E54BAC658AE7066B /* Pods */ = {
@@ -503,6 +516,7 @@
 				60BDD73C1CC6518C00496C07 /* CustomSearchBar.m in Sources */,
 				60C8ED791CB90B13002BC9F6 /* AppDelegate.m in Sources */,
 				608C606E1CBE741F00016597 /* ImageRealm.m in Sources */,
+				60EC3BBE1CD2425B001464CB /* ModalView.m in Sources */,
 				60C8ED821CB90B13002BC9F6 /* WallpaperFun.xcdatamodeld in Sources */,
 				6025F0431CBBD76300133392 /* APIManager.m in Sources */,
 				6028ED3D1CC134D400A855DF /* SwipeImageView.m in Sources */,
