@@ -13,6 +13,7 @@
 
 @optional
 - (void) helpButtonTap:(UIButton *)sender;
+- (void) flip: (UISwitch *)sender;
 @end
 
 /** Navigation bar */

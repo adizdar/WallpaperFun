@@ -97,6 +97,12 @@
     [rightSwichLabel setFont: [UIFont systemFontOfSize: 14]];
     rightSwichLabel.center = CGPointMake(swich.center.x + swich.frame.size.width+9, swich.center.y);
     
+    //** Add Target
+    [swich addTarget: self.delegate
+              action: @selector(flip:)
+    forControlEvents: UIControlEventValueChanged];
+
+    
     //** Add Subviews
     [self addSubview: swich];
     [self addSubview: topSwichText];

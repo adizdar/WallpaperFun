@@ -8,22 +8,58 @@
 
 #import "PreviewView.h"
 
+@interface PreviewView()
+@property (strong, nonatomic) NSString *lightTheme;
+@property (strong, nonatomic) NSString *darkTheme;
+@end
+
 @implementation PreviewView
 
-- (instancetype) init
+
+#pragma mark - Lifecycle
+
+- (instancetype) initWithImage:(UIImage *)image
 {
     self = [super init];
     
     if (!self) return nil;
     
-    float width = [UIScreen mainScreen].bounds.size.width;
-    float height = [UIScreen mainScreen].bounds.size.height;
+    [self setup];
     
-    self.frame = CGRectMake(0, 25, width, height-25);
-    self.image = [UIImage imageNamed: @"preview"];
-        
+    self.image = image;
+    
     return self;
 }
+
+- (instancetype) initWithThemes: (NSString *)lightTheme
+                      darkTheme: (NSString *)darkTheme
+{
+    self = [super init];
+    
+    if (!self) return nil;
+    
+    [self setup];
+    
+    self.image = [UIImage imageNamed: lightTheme];
+    self.lightTheme = lightTheme;
+    self.darkTheme = darkTheme;
+    
+    return self;
+}
+
+- (void)setup
+{
+    float height = [UIScreen mainScreen].bounds.size.height;
+    float width = [UIScreen mainScreen].bounds.size.width;
+    
+    self.contentMode = UIViewContentModeScaleAspectFit;
+    self.frame = CGRectMake(0, 25, width, height-25);
+    self.image = [UIImage imageNamed: @"lightTheme"];
+}
+
+#pragma mark - Custom Accessors
+
+#pragma mark - Public
 
 - (UIColor *)averageColor: (UIImage *)bgImage
 {
@@ -60,10 +96,12 @@
     return [UIColor colorWithRed:f * red  green:f * green blue:f * blue alpha:1];
 }
 
+/** If the color is white we have result approx 3, 
+    for black is approx 0 so if the result is higher than half than return light theme */
 - (BOOL)isImageDark: (UIImage *)bgImage
 {
     UIColor *color = [self averageColor: bgImage];
-    return [UtillsClass red: color] + [UtillsClass blue: color] + [UtillsClass green: color] <= 1.5 ? true : false;
+    return [UtillsClass red: color] + [UtillsClass blue: color] + [UtillsClass green: color] <= 1.4 ? true : false;
 }
 
 - (void)setPreviewImage: (UIImage *)bgImage
@@ -72,10 +110,28 @@
                       duration: 0.2f
                        options: UIViewAnimationOptionTransitionCrossDissolve
                     animations: ^{
-                        self.image = [self isImageDark: bgImage] ? [UIImage imageNamed: @"preview"] : [UIImage imageNamed: @"previewBlack"];
+                        self.image = [self isImageDark: bgImage] ? [UIImage imageNamed: self.lightTheme] : [UIImage imageNamed: self.darkTheme];
                     }
                     completion: nil];
 }
+
+- (void)setLightAndDarkTheme: (NSString *)lightTheme
+                   darkTheme: (NSString *)darkTheme
+{
+    [UIView transitionWithView: self
+                      duration: 0.3f
+                       options: UIViewAnimationOptionTransitionCrossDissolve
+                    animations: ^{
+                        self.image = [UIImage imageNamed: lightTheme];
+                    }
+                    completion:^(BOOL finished) {
+                        self.lightTheme = lightTheme;
+                        self.darkTheme = darkTheme;
+                    }];
+}
+
+#pragma mark - Private
+
 
 // WHITE OR BLACK checkerx
 //- (BOOL) checkIfImage:(UIImage *)someImage {

@@ -108,8 +108,6 @@ ImageLibary *libary;
     
     //** Preview View
     self.previewView.hidden = YES;
-//    UIView *test = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 90, 90)];
-//    BOOL color = [self.previewView isImageDark: [UIImage imageNamed: @"bg"]];
     
     //** Add Subviews (Order is important)
     [self.view addSubview: self.imageSwipeFromCollection];
@@ -240,7 +238,7 @@ ImageLibary *libary;
 - (PreviewView *)previewView
 {
     if (!_previewView) {
-        _previewView = [[PreviewView alloc] init];
+        _previewView = [[PreviewView alloc] initWithThemes: @"previewLight" darkTheme: @"previewDark"];
     }
     
     return _previewView;
@@ -349,9 +347,20 @@ ImageLibary *libary;
 
 #pragma mark - MenuBar delegate
 
-- (void) helpButtonTap:(UIButton *)sender
+- (void)helpButtonTap:(UIButton *)sender
 {
     [self showTutorialScreen];
+}
+
+- (void)flip: (UISwitch *)sender
+{
+    if (sender.on) {
+     [self.previewView setLightAndDarkTheme: @"previewLight"
+                                 darkTheme:  @"previewDark"];
+    } else {
+      [self.previewView setLightAndDarkTheme: @"lockLight"
+                                   darkTheme: @"lockDark"];
+    }
 }
 
 #pragma mark - SwipeImageView delegate
@@ -363,68 +372,7 @@ ImageLibary *libary;
 
 #pragma mark - UISearchBar methods
 
-//- (void)captureAndSaveImage
-//{
-//    float width = [UIScreen mainScreen].bounds.size.width;
-//    float height = [UIScreen mainScreen].bounds.size.height;
-//    // Capture screen here... and cut the appropriate size for saving and uploading
-//    UIGraphicsBeginImageContext(self.view.bounds.size);
-//    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    UIImageView *previewView = [[UIImageView alloc] init ];
-//    
-//    // crop the area you want
-//    CGRect rect;
-//    rect = CGRectMake(0, 10, 300, 300);    // whatever you want
-//    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
-//    UIImage *img = [UIImage imageWithCGImage:imageRef];
-//    CGImageRelease(imageRef);
-//    UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-//    
-//    previewView.image = img; // show cropped image on the ImageView
-//    previewView.frame = CGRectMake(0, 25, width, height-25);
-//    [self.view addSubview: previewView];
-//
-//}
-//
-//// this is option to alert the image saving status
-//- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-//{
-//    UIAlertView *alert;
-//    
-//    // Unable to save the image
-//    if (error)
-//        alert = [[UIAlertView alloc] initWithTitle:@"Error"
-//                                           message:@"Unable to save image to Photo Album."
-//                                          delegate:self cancelButtonTitle:@"Dismiss"
-//                                 otherButtonTitles:nil];
-//    else // All is well
-//        alert = [[UIAlertView alloc] initWithTitle:@"Success"
-//                                           message:@"Image saved to Photo Album."
-//                                          delegate:self cancelButtonTitle:@"Ok"
-//                                 otherButtonTitles:nil];
-//    [alert show];
-//}
-
 
 @end
 
-//- (void)check3DTouch
-//{
-//    // register for 3D Touch (if available)
-//    if ([self.traitCollection
-//         respondsToSelector:@selector(forceTouchCapability)] &&
-//        self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
-//
-//        [self registerForPreviewingWithDelegate:(id)self sourceView: self.imageSwipeFromCollection];
-//
-//        // no need for our alternative anymore
-//        self.longPress.enabled = NO;
-//
-//    } else {
-//        // handle a 3D Touch alternative (long gesture recognizer)
-//        // it calls longPress method which registrate the press selector
-//        self.longPress.enabled = YES;
-//    }
-//}
+

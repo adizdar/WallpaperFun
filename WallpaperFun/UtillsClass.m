@@ -137,4 +137,23 @@ typedef NS_ENUM (NSInteger, UIColorComponentIndices) {
     }
 }
 
+//- (void)check3DTouch
+//{
+//    // register for 3D Touch (if available)
+//    if ([self.traitCollection
+//         respondsToSelector:@selector(forceTouchCapability)] &&
+//        self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+//
+//        [self registerForPreviewingWithDelegate:(id)self sourceView: self.imageSwipeFromCollection];
+//
+//        // no need for our alternative anymore
+//        self.longPress.enabled = NO;
+//
+//    } else {
+//        // handle a 3D Touch alternative (long gesture recognizer)
+//        // it calls longPress method which registrate the press selector
+//        self.longPress.enabled = YES;
+//    }
+//}
+
 @end
