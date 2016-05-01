@@ -22,6 +22,17 @@
              };
 }
 
+#pragma mark - JSON Transformers
+
+//** Convert url to get the bigger image
++ (NSValueTransformer *)urlJSONTransformer
+{
+    return [MTLValueTransformer transformerUsingForwardBlock: ^id(NSString* value, BOOL *success, NSError *__autoreleasing *error) {
+        return [value stringByReplacingOccurrencesOfString:@"640" withString: @"960"];
+    } reverseBlock: ^id(id value, BOOL *success, NSError *__autoreleasing *error) {
+        return value;
+    }];
+}
 
 
 @end

@@ -8,7 +8,6 @@
 
 #import "HomeScreenViewController.h"
 #import "APIManager.h"
-#import "ImageRealm.h"
 #import "UtillsClass.h"
 #import "ImageLibary.h"
 #import "CustomSearchBar.h"
@@ -35,43 +34,6 @@ ImageLibary *libary;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
-    
-//    SingleImageRequestModel *requestModel = [SingleImageRequestModel new];
-//    
-//    [UtillsClass toggleLoadingIndicatorWithText: @"Loading data, please wait..."
-//                                           view: self.view
-//                                    indicatorID: 102];
-//    requestModel.query = @"hjasdas";
-//    
-//    [[APIManager sharedManager] getImagesWithRequestModel: requestModel
-//                                                  success: ^(SingleImageResponseModel *responseModel) {
-//                                                      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                                                          @autoreleasepool {
-//                                                              NSMutableArray *mutableImageCollection = [[NSMutableArray alloc] init];
-//                                                              [mutableImageCollection addObjectsFromArray: responseModel.collection];
-//                                                              
-//                                                              dispatch_async(dispatch_get_main_queue(), ^{
-//                                                                  [UtillsClass toggleLoadingIndicator: self.view
-//                                                                                          indicatorID: 102];
-//                                                                  
-//                                                                  self.imageSwipeFromCollection.collection = mutableImageCollection;
-//                                                                  
-//                                                                  //** trigger tutorial screen only once when the app starts for the first time
-//                                                                  if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
-//                                                                      [self showTutorialScreen];
-//                                                                      [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
-//                                                                  }
-//                                                              });
-//                                                              
-//                                                          }
-//                                                          
-//                                                      });
-//                                                      
-//                                                      
-//                                                  } failure: ^(NSError *error) {
-//                                                      NSLog(@"%@", error);
-//                                                  }];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -183,7 +145,11 @@ ImageLibary *libary;
         
         [libary saveImageToLibary: currentImage.image];
         
-        [UtillsClass toggleMessageModal: @"Image saved" view: self.view indicatorID: 110];
+        [UtillsClass modalWithImageMBHUD: self.view
+                                    text: @"Saved"
+                             detailsText: @"Image added to WallpaperFun album"
+                             indicatorID: 110
+                                   image: [UIImage imageNamed:@"save"]];
         [UtillsClass toggleAfterTimeout: self.view];
         
     } else if ( gesture.state == UIGestureRecognizerStateFailed ) {
@@ -268,40 +234,20 @@ ImageLibary *libary;
 {
     SingleImageRequestModel *requestModel = [SingleImageRequestModel new];
     requestModel.query = text;
+        
+    //** Hide & Dissmis Search Bar
+    [self.searchBar dissmisSearchBar];
+    [self.searchBar hideSearchBar];
     
-    [UtillsClass toggleLoadingIndicatorWithText: @"Loading data, please wait..."
+    [UtillsClass toggleLoadingIndicatorWithText: @"Searching ..."
                                            view: self.view
                                     indicatorID: 102];
     
     [[APIManager sharedManager] getImagesWithRequestModel: requestModel
                                                   success: ^(SingleImageResponseModel *responseModel) {
-                                                      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                                          @autoreleasepool {
-                                                              NSMutableArray *mutableImageCollection = [[NSMutableArray alloc] init];
-                                                              [mutableImageCollection addObjectsFromArray: responseModel.collection];
-                                                              
-                                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                                  [UtillsClass toggleLoadingIndicator: self.view
-                                                                                          indicatorID: 102];
-                                                                  
-                                                                  self.imageSwipeFromCollection.collection = mutableImageCollection;
-                                                                  
-                                                                  //** Hide & Dissmis Search Bar
-                                                                  [self.searchBar dissmisSearchBar];
-                                                                  [self.searchBar hideSearchBar];
-                                                                  
-                                                                  //** Hide Navigation Bar
-                                                                  if(!self.menubar.hidden)
-                                                                      [self.menubar hideWithAnimation];
-                                                              });
-                                                              
-                                                          }
-                                                          
-                                                      });
-                                                      
-                                                      
+                                                      [self searchResponse: responseModel];
                                                   } failure: ^(NSError *error) {
-                                                      NSLog(@"%@", error);
+                                                      [self errorResponse: error];
                                                   }];
 
 }
@@ -335,12 +281,62 @@ ImageLibary *libary;
                     completion: nil];
 }
 
+- (void)searchResponse: (SingleImageResponseModel *)responseModel
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @autoreleasepool {
+            NSMutableArray *mutableImageCollection = [[NSMutableArray alloc] init];
+            [mutableImageCollection addObjectsFromArray: responseModel.collection];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UtillsClass toggleLoadingIndicator: self.view
+                                        indicatorID: 102];
+                
+                self.imageSwipeFromCollection.collection = mutableImageCollection;
+                
+                if (mutableImageCollection && ![mutableImageCollection count]) {
+                    [UtillsClass modalWithImageMBHUD: self.view
+                                                text: @"Sorry"
+                                         detailsText: @"No results for this entery :("
+                                         indicatorID: 400
+                                               image: [UIImage imageNamed:@"wrong"]];
+                    
+                    [UtillsClass toggleAfterTimeout: self.view];
+                }
+                
+                //** Hide Navigation Bar
+                if(!self.menubar.hidden)
+                    [self.menubar hideWithAnimation];
+            });
+            
+        }
+        
+    });
+}
+
+- (void)errorResponse: (NSError *)error
+{
+    NSLog(@"%@", error);
+    [UtillsClass toggleLoadingIndicator: self.view
+                            indicatorID: 102];
+    
+    [UtillsClass modalWithImageMBHUD: self.view
+                                text: @"Connection failed :("
+                         detailsText: @"Please check your internet connection"
+                         indicatorID: 404
+                               image: [UIImage imageNamed:@"error"]];
+    
+    [UtillsClass toggleAfterTimeout: self.view];
+}
+
 #pragma mark - UISearchBar delegate
 
 //** Search Action
 - (void)searchBarSearchButtonClicked: (UISearchBar*)searchBar
 {
     UISearchBar *searchbar = [self.searchBar getSearchBar];
+    
+    if (!searchbar.text) return;
 
     [searchbar resignFirstResponder];
     [searchbar setShowsCancelButton:NO animated:YES];
@@ -377,6 +373,29 @@ ImageLibary *libary;
 - (void)helpButtonTap:(UIButton *)sender
 {
     [self showTutorialScreen];
+}
+
+- (void) favoritesButtonTap: (UIButton *)sender
+{
+    SingleImageRequestModel *requestModel = [SingleImageRequestModel new];
+    requestModel.query = @"";
+    
+    //** Hide & Dissmis Search Bar
+    [self.searchBar dissmisSearchBar];
+    [self.searchBar hideSearchBar];
+    
+    [UtillsClass toggleLoadingIndicatorWithText: @"Loading Editor Chocice images..."
+                                           view: self.view
+                                    indicatorID: 102];
+    
+    [[APIManager sharedManager] getEditorChoiceImagesWithRequestModel: requestModel
+                                                              success: ^(SingleImageResponseModel *responseModel) {
+                                                                  [self searchResponse: responseModel];
+                                                              } failure: ^(NSError *error) {
+                                                                  [self errorResponse: error];
+                                                              }];
+    
+    
 }
 
 - (void)flip: (UISwitch *)sender

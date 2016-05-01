@@ -43,11 +43,6 @@ static NSString* const BASE_URL = @"https://pixabay.com/api/";
     return _sessionManager;
 }
 
-+ (NSString *)getAPIKey
-{
-    return @"632377-16b4e17beb3981d0b97b429f3";
-}
-
 #pragma mark - Private
 
 #pragma mark - Protocol conformance

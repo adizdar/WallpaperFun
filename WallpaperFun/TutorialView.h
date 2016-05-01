@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+/** Tutorial view */
 @interface TutorialView : UIView
 
 @end

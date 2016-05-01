@@ -25,5 +25,15 @@
                                                success:(void (^)(SingleImageResponseModel *responseModel))success
                                                failure:(void (^)(NSError *error))failure;
 
+/** GET method to get editor choice (favorites) image collection
+ @disscussion data fetched from pixabay API
+ @param requestModel represents SingleImageRequestModel used to send request data
+ @param success using BLOCK to obrain respone data as SingleImageResponseModel
+ @param failure NSError BLOCK
+ @return NSURLSessionDataTask
+ */
+- (NSURLSessionDataTask *) getEditorChoiceImagesWithRequestModel:(SingleImageRequestModel *)requestModel
+                                                          success:(void (^)(SingleImageResponseModel *responseModel))success
+                                                          failure:(void (^)(NSError *error))failure;
 
 @end

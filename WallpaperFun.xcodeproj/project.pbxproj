@@ -32,7 +32,6 @@
 		6028ED3A1CC0364000A855DF /* ImageLibary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6028ED391CC0364000A855DF /* ImageLibary.m */; };
 		6028ED3D1CC134D400A855DF /* SwipeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6028ED3C1CC134D400A855DF /* SwipeImageView.m */; };
 		6028ED401CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6028ED3F1CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.m */; };
-		608C606E1CBE741F00016597 /* ImageRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 608C606D1CBE741F00016597 /* ImageRealm.m */; };
 		60BDD7391CC52E8D00496C07 /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BDD7381CC52E8D00496C07 /* SearchView.m */; };
 		60BDD73C1CC6518C00496C07 /* CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BDD73B1CC6518C00496C07 /* CustomSearchBar.m */; };
 		60C8ED761CB90B13002BC9F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C8ED751CB90B13002BC9F6 /* main.m */; };
@@ -75,8 +74,6 @@
 		6028ED3C1CC134D400A855DF /* SwipeImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeImageView.m; sourceTree = "<group>"; };
 		6028ED3E1CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+UrlToImageConverter.h"; sourceTree = "<group>"; };
 		6028ED3F1CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+UrlToImageConverter.m"; sourceTree = "<group>"; };
-		608C606C1CBE741F00016597 /* ImageRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageRealm.h; path = Models/ImageRealm.h; sourceTree = "<group>"; };
-		608C606D1CBE741F00016597 /* ImageRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageRealm.m; path = Models/ImageRealm.m; sourceTree = "<group>"; };
 		60BDD7371CC52E8D00496C07 /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
 		60BDD7381CC52E8D00496C07 /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
 		60BDD73A1CC6518C00496C07 /* CustomSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchBar.h; sourceTree = "<group>"; };
@@ -167,8 +164,6 @@
 			children = (
 				6025F03B1CBBC38100133392 /* SingleImageModel.h */,
 				6025F03C1CBBC38100133392 /* SingleImageModel.m */,
-				608C606C1CBE741F00016597 /* ImageRealm.h */,
-				608C606D1CBE741F00016597 /* ImageRealm.m */,
 			);
 			name = Image;
 			sourceTree = "<group>";
@@ -213,7 +208,6 @@
 				60C8ED981CB90FFE002BC9F6 /* DataSources */,
 				60C8ED9D1CB92773002BC9F6 /* Vendor */,
 				60C8ED801CB90B13002BC9F6 /* WallpaperFun.xcdatamodeld */,
-				60EC3BAF1CCD0263001464CB /* Images.xcassets */,
 			);
 			path = WallpaperFun;
 			sourceTree = "<group>";
@@ -288,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				60EC3BA51CCA4924001464CB /* Assets.xcassets */,
+				60EC3BAF1CCD0263001464CB /* Images.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -515,7 +510,6 @@
 				60BDD7391CC52E8D00496C07 /* SearchView.m in Sources */,
 				60BDD73C1CC6518C00496C07 /* CustomSearchBar.m in Sources */,
 				60C8ED791CB90B13002BC9F6 /* AppDelegate.m in Sources */,
-				608C606E1CBE741F00016597 /* ImageRealm.m in Sources */,
 				60EC3BBE1CD2425B001464CB /* ModalView.m in Sources */,
 				60C8ED821CB90B13002BC9F6 /* WallpaperFun.xcdatamodeld in Sources */,
 				6025F0431CBBD76300133392 /* APIManager.m in Sources */,

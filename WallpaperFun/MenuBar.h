@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "UtillsClass.h"
 
+/** Protocol for Menu Bar */
 @protocol MenuBarProtocolDelegate <NSObject>
 @optional
 - (void) aboutButtonTap: (UIButton *)sender;
 - (void) helpButtonTap: (UIButton *)sender;
+- (void) favoritesButtonTap: (UIButton *)sender;
 - (void) flip: (UISwitch *)sender;
 @end
 

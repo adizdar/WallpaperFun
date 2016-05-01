@@ -33,7 +33,7 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
     
     if (self.collection && [self.collection count]!=0) {
         [self addSubview: [self.collection getImageObjectAtIndex: 0]];
-    } else {
+    } else { // @TODO create a add function
         [self addSubview: [[SingleImageView alloc] initWithImageData: UIImagePNGRepresentation([UIImage imageNamed: DEFAULT_IMAGE])
                                                            imageName: @"bg"]];
     }
@@ -45,6 +45,7 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
 
 - (void)setCollection:(NSMutableArray *)collection
 {
+    _collection = nil;
     _collection = collection;
     [self removeAllSubViews];
     
@@ -130,7 +131,7 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
     
     [UIView transitionWithView: self
                       duration: 0.5f
-                       options: UIViewAnimationOptionTransitionCrossDissolve
+                       options: direction == Left ? UIViewAnimationOptionTransitionCurlUp : UIViewAnimationOptionTransitionCurlDown
                     animations: ^{
                         [self addSubview: imageView];
                     }
@@ -165,7 +166,9 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
 
 - (SingleImageView *)getCurrentImage
 {
-    return [self.collection getImageObjectAtIndex:[self.collection getCurrentObjectIndex]];
+    return self.collection && [self.collection count] ?
+           [self.collection getImageObjectAtIndex: [self.collection getCurrentObjectIndex]] :
+           [[SingleImageView alloc] initWithImage: [UIImage imageNamed: DEFAULT_IMAGE]];
 }
 
 @end

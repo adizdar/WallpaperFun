@@ -14,8 +14,9 @@
 /** Image name */
 @property(nonatomic, strong) NSString *imageName;
 
-/** Custom init method */
-- (instancetype) initWithImageData: (NSData *)imageData imageName:(NSString *)imageName;
+/** Init methods */
+- (instancetype)initWithImageData: (NSData *)imageData imageName:(NSString *)imageName;
+- (instancetype)initWithImage:(UIImage *)image;
 
 /** Save Image to filestore */
 - (void)saveImage;

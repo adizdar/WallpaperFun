@@ -19,9 +19,4 @@
  */
 + (id)sharedManager;
 
-/** Get API key for PixelBay
- @return NSString
- */
-+ (NSString *)getAPIKey;
-
 @end

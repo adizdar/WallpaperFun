@@ -22,5 +22,7 @@
 /** Orientation position by default set to vertical */
 @property (nonatomic, copy) NSString *orientation;
 
+/** Number Of images to download */
+@property (nonatomic) NSUInteger requestedNumberOfImages;
 
 @end

@@ -154,6 +154,10 @@
                    action: @selector(helpButtonTap:)
          forControlEvents: UIControlEventTouchUpInside];
     
+    [favoritesButton addTarget: self.delegate
+                   action: @selector(favoritesButtonTap:)
+         forControlEvents: UIControlEventTouchUpInside];
+    
     //** Add Subviews
     [self addSubview: helpButton];
     [self addSubview: aboutButton];

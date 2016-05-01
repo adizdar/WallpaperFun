@@ -92,6 +92,38 @@ typedef NS_ENUM (NSInteger, UIColorComponentIndices) {
     });
 }
 
++ (void)modalWithImageMBHUD: (UIView *)view
+                       text: (NSString *)text
+                detailsText: (NSString *) detailsText
+                indicatorID: (NSInteger)indicatorID
+                      image: (UIImage *)image
+{
+    MBProgressHUD *hud = [view viewWithTag: indicatorID];
+    
+    if (!hud) {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
+        imageView.frame = CGRectMake(0, 0, 50, 50);
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+
+        hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = text;
+        hud.detailsLabelText = detailsText;
+        hud.tag = indicatorID;
+        hud.customView = imageView;
+        hud.color = [UIColor orangeColor];
+        hud.opacity = 0.8;
+        hud.dimBackground = YES;
+    } else if ([hud alpha] == 1.0) {
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.4 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [hud hide:YES];
+        });
+    } else {
+        [hud show:YES];
+    }
+}
+
 + (CGFloat)red: (UIColor *)color
 {
     return CGColorGetComponents(color.CGColor)[R];
@@ -126,9 +158,10 @@ typedef NS_ENUM (NSInteger, UIColorComponentIndices) {
         hud.mode = mode;
         hud.labelText = text;
         hud.tag = indicatorID;
-//        [hud setBackgroundColor:<#(UIColor * _Nullable)#>];
+        hud.color = [UtillsClass UIColorFromRGB: 0xF9690E];
+        hud.opacity = 0.9;
     } else if ([hud alpha] == 1.0) {
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.02 * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [hud hide:YES];
         });

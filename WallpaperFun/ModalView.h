@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UtillsClass.h"
 
+/** Modal view */
 @interface ModalView : UIView
 
 @end

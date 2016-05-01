@@ -61,7 +61,7 @@ float height;
     //** Text One
     UILabel *description = [[UILabel alloc] init];
     
-    description.frame = CGRectMake(0, 0, self.bounds.size.width/2.3, self.bounds.size.height/4);
+    description.frame = CGRectMake(0, 0, 135, self.bounds.size.height/4);
     description.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2.8);
     description.text = @"API powered by: ";
     description.font = [UIFont fontWithName: @"Chalkduster" size: 14];
@@ -77,7 +77,7 @@ float height;
     //** Text Two
     UILabel *subDescription = [[UILabel alloc] init];
     
-    subDescription.frame = CGRectMake(0, 0, self.bounds.size.width/2, self.bounds.size.height/4);
+    subDescription.frame = CGRectMake(0, 0, 160, self.bounds.size.height/4);
     subDescription.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/1.6);
     subDescription.text = [NSString stringWithFormat: @"%@\n%@", @"Code avaible on:",  @"github.com/adizdar"];
     subDescription.font = [UIFont fontWithName: @"Chalkduster" size: 14];
@@ -95,7 +95,7 @@ float height;
     
     robyView.frame = CGRectMake(0, 0, 40, 40);
     robyView.contentMode = UIViewContentModeScaleAspectFit;
-    robyView.center = CGPointMake(self.bounds.size.width - 30, self.bounds.size.height/1.1);
+    robyView.center = CGPointMake(self.bounds.size.width - 32, self.bounds.size.height - 32);
     
     [self addSubview: logoView];
     [self addSubview: description];
