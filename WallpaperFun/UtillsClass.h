@@ -35,6 +35,18 @@
                                   view: (UIView *)view
                            indicatorID: (NSInteger) indicatorID;
 
+/** Create MBProgressHUD and toggle it
+ @description If MBProgressHUD is created the method will switch the visibility of it, call destroyLoadingIndicatorWithText to remove it from the view compleatly
+ @parameter text as NSString initialize the loading text
+ @parameter description as NSString initialize the loading text
+ @parameter view as UIView send the superview where you want to add the loadingIndicator
+ @parameter indicatorID as NSInteger the tag of the view so you can manipulate it from the controller and the methods can check his existance in the superview
+ */
++ (void)toggleLoadingIndicatorWithTextAndSubText: (NSString *)text
+                             withDescriptionText: (NSString *)description
+                                            view: (UIView *)view
+                                     indicatorID: (NSInteger) indicatorID;
+
 /** Just toggle funcionality
  @description it calls the full toggleLoadingIndicatorWithText where the text is set to nil
  */
@@ -96,6 +108,11 @@
  */
 + (CGFloat)alpha: (UIColor *)color;
 
+/** Get Device Name
+ @return NSString
+ */
++ (NSString *)deviceName;
+
 /** Show Modal with image
  @parameter view as UIView
  @parameter text as NSString title of the modal
@@ -107,4 +124,5 @@
                 detailsText: (NSString *)detailsText
                 indicatorID: (NSInteger)indicatorID
                       image: (UIImage *)image;
+
 @end

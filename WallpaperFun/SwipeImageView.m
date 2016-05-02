@@ -95,15 +95,24 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
 
 - (void)initCollection
 {
+    [self addSubview: [[SingleImageView alloc] initWithImageData: UIImagePNGRepresentation([UIImage imageNamed: DEFAULT_IMAGE])
+                                                       imageName: @"bg"]];
     if (self.collection && [self.collection count]!=0) {
         [self.collection resetCurrentObject]; // TODO find better way to reset this
-        [self.collection getImageObjectAtIndex: 0
-                                      andBlock: ^(SingleImageView *imageView) {
-                                          [self addSubview: imageView];
-                                      }];
-    } else {
-        [self addSubview: [[SingleImageView alloc] initWithImageData: UIImagePNGRepresentation([UIImage imageNamed: DEFAULT_IMAGE])
-                                                           imageName: @"bg"]];
+        
+        //** To fix white bacground that comes between search results
+        [UIView transitionWithView: self
+                          duration: 0.5f
+                           options: UIViewAnimationOptionTransitionCurlUp
+                        animations: ^{
+                            [self.collection getImageObjectAtIndex: 0
+                                                          andBlock: ^(SingleImageView *imageView) {
+                                                              [self addSubview: imageView];
+                                                              [self.delegate imageDownloadCompleate: imageView.image];
+                                                          }];
+                        }
+                        completion: nil];
+
     }
 }
 

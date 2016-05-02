@@ -17,6 +17,8 @@
 
 @optional
 - (void)imageChanged: (UIImage *)image;
+- (void)imageDownloadCompleate: (UIImage *)image;
+
 @end
 
 /** Conteiner to manage swipe left and right od items */

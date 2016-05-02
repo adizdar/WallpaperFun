@@ -7,6 +7,7 @@
 //
 
 #import "UtillsClass.h"
+#import <sys/utsname.h>
 
 typedef NS_ENUM (NSInteger, UIColorComponentIndices) {
     R, G, B, A
@@ -52,6 +53,19 @@ typedef NS_ENUM (NSInteger, UIColorComponentIndices) {
 {
     [self callMBHUD:view
                text:text
+    descriptionText: @""
+        indicatorID:indicatorID
+               mode:MBProgressHUDModeIndeterminate];
+}
+
++ (void)toggleLoadingIndicatorWithTextAndSubText: (NSString *)text
+                             withDescriptionText: (NSString *)description
+                                            view: (UIView *)view
+                                     indicatorID: (NSInteger) indicatorID
+{
+    [self callMBHUD:view
+               text:text
+    descriptionText: description
         indicatorID:indicatorID
                mode:MBProgressHUDModeIndeterminate];
 }
@@ -62,6 +76,7 @@ typedef NS_ENUM (NSInteger, UIColorComponentIndices) {
 {
     [self callMBHUD:view
                text:text
+    descriptionText: @""
         indicatorID:indicatorID
                mode:MBProgressHUDModeText];
 }
@@ -144,10 +159,20 @@ typedef NS_ENUM (NSInteger, UIColorComponentIndices) {
     return CGColorGetComponents(color.CGColor)[A];
 }
 
++ (NSString *)deviceName
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    return [NSString stringWithCString:systemInfo.machine
+                              encoding:NSUTF8StringEncoding];
+}
+
 #pragma mark - Private
 
 + (void)callMBHUD: (UIView *)view
              text: (NSString *)text
+  descriptionText: (NSString *)descriptionText
       indicatorID: (NSInteger)indicatorID
              mode: (MBProgressHUDMode)mode
 {
@@ -157,6 +182,7 @@ typedef NS_ENUM (NSInteger, UIColorComponentIndices) {
         hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
         hud.mode = mode;
         hud.labelText = text;
+        hud.detailsLabelText = descriptionText;
         hud.tag = indicatorID;
         hud.color = [UtillsClass UIColorFromRGB: 0xF9690E];
         hud.opacity = 0.9;

@@ -37,13 +37,15 @@ NSUInteger objectIndex = 0;
                               andBlock:(void (^)(SingleImageView *imageData))processImage
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: url]];
-        
+    [request setTimeoutInterval: 35.0];
+    
     [NSURLConnection sendAsynchronousRequest: request
                                        queue: [NSOperationQueue mainQueue]
                            completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error) {
                                if( !error ) {
                                    processImage([[SingleImageView alloc] initWithImageData: data imageName: imageName]);
                                } else {
+                                   NSLog(@"%@", error);
                                    processImage(nil);
                                }
                            }];

@@ -52,7 +52,7 @@
     float height = [UIScreen mainScreen].bounds.size.height;
     float width = [UIScreen mainScreen].bounds.size.width;
     
-    self.contentMode = UIViewContentModeScaleAspectFit;
+    self.contentMode = UIViewContentModeScaleAspectFill;
     self.frame = CGRectMake(0, 25, width, height-25);
     self.image = [UIImage imageNamed: @"lightTheme"];
 }
@@ -102,7 +102,7 @@
     for black is approx 0 so if the result is higher than half than return light theme */
 - (BOOL)isImageDark: (UIImage *)bgImage
 {
-    if (!bgImage) return nil;
+    if (!bgImage) return false;
     
     UIColor *color = [self averageColor: bgImage];
     return [UtillsClass red: color] + [UtillsClass blue: color] + [UtillsClass green: color] <= 1.4 ? true : false;

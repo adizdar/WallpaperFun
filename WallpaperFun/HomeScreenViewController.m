@@ -216,7 +216,10 @@ ImageLibary *libary;
 - (PreviewView *)previewView
 {
     if (!_previewView) {
-        _previewView = [[PreviewView alloc] initWithThemes: @"previewLight" darkTheme: @"previewDark"];
+        NSString *light = [[UtillsClass deviceName] isEqual: @"iPhone4,1"] ? @"previewLight4s" : @"previewLight" ;
+        NSString *dark = [[UtillsClass deviceName] isEqual: @"iPhone4,1"] ? @"previewDark4s" : @"previewDark" ;
+
+        _previewView = [[PreviewView alloc] initWithThemes: light darkTheme: dark];
     }
     
     return _previewView;
@@ -297,9 +300,6 @@ ImageLibary *libary;
             [mutableImageCollection addObjectsFromArray: responseModel.collection];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                [UtillsClass toggleLoadingIndicator: self.view
-                                        indicatorID: 102];
-                
                 self.imageSwipeFromCollection.collection = mutableImageCollection;
                 
                 if (mutableImageCollection && ![mutableImageCollection count]) {
@@ -311,6 +311,17 @@ ImageLibary *libary;
                     
                     [UtillsClass toggleAfterTimeout: self.view];
                 }
+                
+                // ** Hide Search modal window
+                [UtillsClass toggleLoadingIndicator: self.view
+                                        indicatorID: 102];
+                
+                //** Show Setting image modal, if internet connection is slow, so the user has feedback
+                //** Hide is implemented in delegate method "imageDownloadCompleate"
+                [UtillsClass toggleLoadingIndicatorWithTextAndSubText: @"Initializing image"
+                                                  withDescriptionText: @"This can take a while if the connection is slow"
+                                                                 view: self.view
+                                                          indicatorID: 104];
                 
                 //** Hide Navigation Bar
                 if(!self.menubar.hidden)
@@ -408,9 +419,10 @@ ImageLibary *libary;
 
 - (void)flip: (UISwitch *)sender
 {
+    
     if (sender.on) {
-     [self.previewView setLightAndDarkTheme: @"previewLight"
-                                 darkTheme:  @"previewDark"];
+        [self.previewView setLightAndDarkTheme: [[UtillsClass deviceName] isEqual: @"iPhone4,1"] ? @"previewLight4s" : @"previewLight"
+                                     darkTheme: [[UtillsClass deviceName] isEqual: @"iPhone4,1"] ? @"previewDark4s" : @"previewDark"];
     } else {
       [self.previewView setLightAndDarkTheme: @"lockLight"
                                    darkTheme: @"lockDark"];
@@ -432,6 +444,13 @@ ImageLibary *libary;
         
         [UtillsClass toggleAfterTimeout: self.view];
     }
+}
+
+- (void)imageDownloadCompleate: (UIImage *)image
+{
+    // ** Hide seting image modal window
+    [UtillsClass toggleLoadingIndicator: self.view
+                            indicatorID: 104];
 }
 
 #pragma mark - UISearchBar methods
