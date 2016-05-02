@@ -49,7 +49,7 @@ static NSString *const apiKey = @"632377-16b4e17beb3981d0b97b429f3";
     
     [parametersWithKey setObject: apiKey forKey: @"key"];
     [parametersWithKey setObject: @"true" forKey: @"editors_choice"];
-    
+        
     return [self GET:kImagesListPath parameters:parametersWithKey progress:nil
              success:^(NSURLSessionDataTask *task, id responseObject) {
                  

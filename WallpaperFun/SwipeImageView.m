@@ -31,12 +31,7 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
 
     self.collection = collection;
     
-    if (self.collection && [self.collection count]!=0) {
-        [self addSubview: [self.collection getImageObjectAtIndex: 0]];
-    } else { // @TODO create a add function
-        [self addSubview: [[SingleImageView alloc] initWithImageData: UIImagePNGRepresentation([UIImage imageNamed: DEFAULT_IMAGE])
-                                                           imageName: @"bg"]];
-    }
+    [self initCollection];
     
     return self;
 }
@@ -48,14 +43,7 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
     _collection = nil;
     _collection = collection;
     [self removeAllSubViews];
-    
-    if (self.collection && [self.collection count]!=0) {
-        [self.collection resetCurrentObject]; // TODO find better way to reset this
-        [self addSubview: [self.collection getImageObjectAtIndex: 0]];
-    } else {
-        [self addSubview: [[SingleImageView alloc] initWithImageData: UIImagePNGRepresentation([UIImage imageNamed: DEFAULT_IMAGE])
-                                                           imageName: @"bg"]];
-    }
+    [self initCollection];
 }
 
 #pragma mark - Gesture init/handler
@@ -105,6 +93,20 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
 
 #pragma mark - Private
 
+- (void)initCollection
+{
+    if (self.collection && [self.collection count]!=0) {
+        [self.collection resetCurrentObject]; // TODO find better way to reset this
+        [self.collection getImageObjectAtIndex: 0
+                                      andBlock: ^(SingleImageView *imageView) {
+                                          [self addSubview: imageView];
+                                      }];
+    } else {
+        [self addSubview: [[SingleImageView alloc] initWithImageData: UIImagePNGRepresentation([UIImage imageNamed: DEFAULT_IMAGE])
+                                                           imageName: @"bg"]];
+    }
+}
+
 - (void)removeSubviewFromView:(id)subview
 {
     [subview removeFromSuperview];
@@ -122,8 +124,23 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
 
 - (void)addSubviewToSlider: (int)direction
 {
-    SingleImageView *imageView = (direction == Left) ? [self.collection getNextObject] : [self.collection getPreviousObject];
+    [UtillsClass toggleLoadingIndicator: self indicatorID: 200];
     
+    if (direction == Left) {
+        [self.collection getNextObject:^(SingleImageView *imageView) {
+            [self addWithAnimation: imageView direction: Left];
+            [UtillsClass hideModalHud: self];
+        }];
+    } else {
+        [self.collection getPreviousObject:^(SingleImageView *imageView) {
+            [self addWithAnimation: imageView direction: Right];
+            [UtillsClass hideModalHud: self];
+        }];
+    }
+}
+
+- (void)addWithAnimation: (SingleImageView *)imageView direction: (int)direction
+{
     if (!imageView) return;
     
     // remove views
@@ -139,7 +156,6 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
                         //** Notify the delegate that the image changed
                         [self.delegate imageChanged: imageView.image];
                     }];
-
 }
 
 #pragma mark - Animation
@@ -164,11 +180,16 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
     return opacityAnimation;
 }
 
-- (SingleImageView *)getCurrentImage
+- (void)getCurrentImage: (void (^)(SingleImageView *imageView))getImageView
 {
-    return self.collection && [self.collection count] ?
-           [self.collection getImageObjectAtIndex: [self.collection getCurrentObjectIndex]] :
-           [[SingleImageView alloc] initWithImage: [UIImage imageNamed: DEFAULT_IMAGE]];
+    if (self.collection && [self.collection count]) {
+        [self.collection getImageObjectAtIndex: [self.collection getCurrentObjectIndex]
+                                      andBlock: ^(SingleImageView *imageView) {
+                                          getImageView(imageView ? : [[SingleImageView alloc] initWithImage: [UIImage imageNamed: DEFAULT_IMAGE]]);
+                                      } ];
+    } else {
+        getImageView([[SingleImageView alloc] initWithImage: [UIImage imageNamed: DEFAULT_IMAGE]]);
+    }
 }
 
 @end

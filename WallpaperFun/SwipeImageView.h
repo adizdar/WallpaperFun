@@ -32,10 +32,8 @@
  */
 @property(nonatomic, strong) NSMutableArray *collection;
 
-/** Get current image 
-    @return SingleImageView subclassing UIView
- */
-- (SingleImageView *)getCurrentImage;
+/** Get current image */
+- (void)getCurrentImage: (void (^)(SingleImageView *imageView))getImageView;
 
 @property (nonatomic, assign) id <SwipeImageViewProtocol> delegate;
 

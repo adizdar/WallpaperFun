@@ -14,17 +14,15 @@
 @interface NSMutableArray (UrlToImageConverter)
 
 /** Converting ImageModel to ImageView */
-- (id)getImageObjectAtIndex:(NSUInteger)index;
+- (void)getImageObjectAtIndex:(NSUInteger)index andBlock:(void (^)(SingleImageView *imageView))getImageView;
 
 /** Get next object from array 
-    @return id
  */
-- (id)getNextObject;
+- (void)getNextObject: (void (^)(SingleImageView *imageView))getImageView;
 
 /** Get previous object from array 
-    @return id
  */
-- (id)getPreviousObject;
+- (void)getPreviousObject: (void (^)(SingleImageView *imageView))getImageView;
 
 /** Get current object index
     @description max index is length-1

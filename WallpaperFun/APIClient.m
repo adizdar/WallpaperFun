@@ -20,6 +20,7 @@ static NSString* const BASE_URL = @"https://pixabay.com/api/";
     
     if (!self) return nil;
     
+    [self.requestSerializer setTimeoutInterval: 20.0];
     self.responseSerializer = [AFJSONResponseSerializer serializer];
     self.requestSerializer = [AFJSONRequestSerializer serializer];
     

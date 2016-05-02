@@ -34,6 +34,11 @@ ImageLibary *libary;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
+        [self showTutorialScreen];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,6 +122,8 @@ ImageLibary *libary;
 
 - (void)swipeUpGesture:(UISwipeGestureRecognizer *)recognizer
 {
+    [self.searchBar dissmisSearchBar];
+    
     [UIView transitionWithView: self.menubar
                       duration: 0.3f
                        options: UIViewAnimationOptionTransitionCrossDissolve
@@ -141,17 +148,18 @@ ImageLibary *libary;
 {
     if ( gesture.state == UIGestureRecognizerStateBegan ) {
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-        SingleImageView *currentImage = [self.imageSwipeFromCollection getCurrentImage];
         
-        [libary saveImageToLibary: currentImage.image];
-        
-        [UtillsClass modalWithImageMBHUD: self.view
-                                    text: @"Saved"
-                             detailsText: @"Image added to WallpaperFun album"
-                             indicatorID: 110
-                                   image: [UIImage imageNamed:@"save"]];
-        [UtillsClass toggleAfterTimeout: self.view];
-        
+        [self.imageSwipeFromCollection getCurrentImage:^(SingleImageView *imageView) {
+            [libary saveImageToLibary: imageView.image];
+            
+            [UtillsClass modalWithImageMBHUD: self.view
+                                        text: @"Saved"
+                                 detailsText: @"Image added to WallpaperFun album"
+                                 indicatorID: 110
+                                       image: [UIImage imageNamed:@"save"]];
+            [UtillsClass toggleAfterTimeout: self.view];
+
+        }];
     } else if ( gesture.state == UIGestureRecognizerStateFailed ) {
         NSLog(@"ERROR -> HomeController, longPress gesture error");
         [UtillsClass toggleMessageModal: @"Save failed" view: self.view indicatorID: 110];
@@ -413,7 +421,17 @@ ImageLibary *libary;
 
 - (void)imageChanged: (UIImage *)image
 {
-    [self.previewView setPreviewImage: image];
+    if (image) {
+        [self.previewView setPreviewImage: image];
+    } else {
+        [UtillsClass modalWithImageMBHUD: self.view
+                                    text: @"Connection failed :("
+                             detailsText: @"Please check your internet connection"
+                             indicatorID: 404
+                                   image: [UIImage imageNamed:@"error"]];
+        
+        [UtillsClass toggleAfterTimeout: self.view];
+    }
 }
 
 #pragma mark - UISearchBar methods

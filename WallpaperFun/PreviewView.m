@@ -63,6 +63,8 @@
 
 - (UIColor *)averageColor: (UIImage *)bgImage
 {
+    if (!bgImage) return nil;
+    
     CGImageRef rawImageRef = bgImage.CGImage;
     
     // This function returns the raw pixel values
@@ -100,12 +102,16 @@
     for black is approx 0 so if the result is higher than half than return light theme */
 - (BOOL)isImageDark: (UIImage *)bgImage
 {
+    if (!bgImage) return nil;
+    
     UIColor *color = [self averageColor: bgImage];
     return [UtillsClass red: color] + [UtillsClass blue: color] + [UtillsClass green: color] <= 1.4 ? true : false;
 }
 
 - (void)setPreviewImage: (UIImage *)bgImage
 {
+    if (!bgImage) return;
+
     [UIView transitionWithView: self
                       duration: 0.2f
                        options: UIViewAnimationOptionTransitionCrossDissolve

@@ -10,36 +10,53 @@
 
 @implementation NSMutableArray (UrlToImageConverter)
 
-NSUInteger objectIndex = 0;
 id currentObject = nil;
+NSUInteger objectIndex = 0;
 
-- (id)getImageObjectAtIndex:(NSUInteger)index
+- (void)getImageObjectAtIndex:(NSUInteger)index andBlock:(void (^)(SingleImageView *imageView))getImageView
 {
     SingleImageModel *imageModel;
     index = index % ([self count]);
 
     if (![[self objectAtIndex: index] isKindOfClass: [SingleImageModel class]]) {
         NSLog(@"NSMutableArray+UrlToImageConverter -> No Object type of SingleImageModel");
-        return nil;
+        return;
     }
     
     imageModel = [self objectAtIndex: index];
-    return [self convertUrlToImage: imageModel.url imageName: [@(imageModel.imageId) stringValue]];
+    [self convertUrlToImage: imageModel.url
+                         imageName: [@(imageModel.imageId) stringValue]
+                          andBlock: ^(SingleImageView *imageData) {
+                              getImageView(imageData);
+                          }];
 }
 
 
-- (SingleImageView *)convertUrlToImage:(NSString *)url imageName: (NSString *)imageName
+- (void)convertUrlToImage:(NSString *)url
+                             imageName: (NSString *)imageName
+                              andBlock:(void (^)(SingleImageView *imageData))processImage
 {
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
-    
-    return [[SingleImageView alloc] initWithImageData: imageData imageName: imageName];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: url]];
+        
+    [NSURLConnection sendAsynchronousRequest: request
+                                       queue: [NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if( !error ) {
+                                   processImage([[SingleImageView alloc] initWithImageData: data imageName: imageName]);
+                               } else {
+                                   processImage(nil);
+                               }
+                           }];
 }
 
-- (id)getNextObject
+- (void)getNextObject: (void (^)(SingleImageView *imageView))getImageView
 {
     NSUInteger index = 0;
     
-    if(!self.count) return nil;
+    if(!self.count) {
+        getImageView(nil);
+        return;
+    }
     
     if (!currentObject) {
         currentObject = [self objectAtIndex:0];
@@ -52,18 +69,25 @@ id currentObject = nil;
             currentObject =  [self objectAtIndex: index+1];
             break;
         } else if (currentObject == object && index == [self count]-1) {
-            return nil;
+            getImageView(nil);
+            return;
         }
     }
     
-    return currentObject ? [self getImageObjectAtIndex: [self indexOfObject: currentObject]] : nil;
+    [self getImageObjectAtIndex: [self indexOfObject: currentObject]
+                       andBlock: ^(SingleImageView *imageView) {
+                           getImageView(currentObject ? imageView : nil);
+    }];
 }
 
-- (id)getPreviousObject
+- (void)getPreviousObject: (void (^)(SingleImageView *imageView))getImageView
 {
     NSUInteger index = 0;
     
-    if(!self.count) return nil;
+    if(!self.count) {
+        getImageView(nil);
+        return;
+    }
     
     if (!currentObject) {
         currentObject = [self objectAtIndex:0];
@@ -76,11 +100,16 @@ id currentObject = nil;
             currentObject = [self objectAtIndex: index-1];
             break;
         } else if (currentObject == object && index == 0) {
-            return nil;
+            getImageView(nil);
+            return;
         }
     }
     
-    return currentObject ? [self getImageObjectAtIndex: [self indexOfObject: currentObject]] : nil;
+    [self getImageObjectAtIndex: [self indexOfObject: currentObject]
+                       andBlock: ^(SingleImageView *imageView) {
+                           getImageView(currentObject ? imageView : nil);
+                       }];
+    
 }
 
 - (int)getCurrentObjectIndex
@@ -92,7 +121,7 @@ id currentObject = nil;
 {
     currentObject = nil;
     
-    if ([self count] != 0 && [[self getImageObjectAtIndex: 0] isKindOfClass: [SingleImageView class]]) {
+    if ([self count] != 0) {
         currentObject = [self objectAtIndex:0];
     }
 }
