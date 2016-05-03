@@ -168,6 +168,11 @@ typedef NS_ENUM (NSInteger, UIColorComponentIndices) {
                               encoding:NSUTF8StringEncoding];
 }
 
++ (UIStatusBarStyle)preferredStatusBarStyleLight
+{
+    return UIStatusBarStyleLightContent;
+}
+
 #pragma mark - Private
 
 + (void)callMBHUD: (UIView *)view

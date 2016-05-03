@@ -113,6 +113,11 @@
  */
 + (NSString *)deviceName;
 
+/** Set status bar to light color
+ @return UIStatusBarStyle
+ */
++ (UIStatusBarStyle)preferredStatusBarStyleLight;
+
 /** Show Modal with image
  @parameter view as UIView
  @parameter text as NSString title of the modal

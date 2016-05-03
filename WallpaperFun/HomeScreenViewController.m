@@ -419,11 +419,12 @@ ImageLibary *libary;
 
 - (void)flip: (UISwitch *)sender
 {
-    
     if (sender.on) {
+        self.previewView.contentMode = UIViewContentModeScaleAspectFill;
         [self.previewView setLightAndDarkTheme: [[UtillsClass deviceName] isEqual: @"iPhone4,1"] ? @"previewLight4s" : @"previewLight"
                                      darkTheme: [[UtillsClass deviceName] isEqual: @"iPhone4,1"] ? @"previewDark4s" : @"previewDark"];
     } else {
+      self.previewView.contentMode = UIViewContentModeScaleAspectFit;
       [self.previewView setLightAndDarkTheme: @"lockLight"
                                    darkTheme: @"lockDark"];
     }

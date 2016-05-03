@@ -116,7 +116,16 @@
                       duration: 0.2f
                        options: UIViewAnimationOptionTransitionCrossDissolve
                     animations: ^{
-                        self.image = [self isImageDark: bgImage] ? [UIImage imageNamed: self.lightTheme] : [UIImage imageNamed: self.darkTheme];
+                        //** Change preview theme and status bar color
+                        //** View controller-based status bar appearance NO needs to be added to info plist
+                        if ([self isImageDark: bgImage]) {
+                            self.image = [UIImage imageNamed: self.lightTheme];
+                            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+                        } else {
+                            self.image = [UIImage imageNamed: self.darkTheme];
+                            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+                        }
+                        
                     }
                     completion: nil];
 }

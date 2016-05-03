@@ -67,6 +67,11 @@ typedef NS_ENUM (NSInteger, SwipeDirection) {
 }
 
 - (void)swipeLeftHandler:(UISwipeGestureRecognizer *)recognizer {
+    
+    if ([self.collection count] == 0) {
+        return;
+    }
+    
     if ([self.collection count] == [self.collection getCurrentObjectIndex]+1) {
         
         [UtillsClass toggleMessageModal:@"End of results" view:self indicatorID: 100];
