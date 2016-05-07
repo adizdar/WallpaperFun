@@ -31,7 +31,8 @@ ImageLibary *libary;
 
 #pragma mark - Lifecycle
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setup];
     
@@ -41,7 +42,8 @@ ImageLibary *libary;
     }
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -302,6 +304,14 @@ ImageLibary *libary;
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.imageSwipeFromCollection.collection = mutableImageCollection;
                 
+                // ** Hide Search modal window
+                [UtillsClass toggleLoadingIndicator: self.view
+                                        indicatorID: 102];
+                
+                //** Hide Navigation Bar
+                if(!self.menubar.hidden)
+                    [self.menubar hideWithAnimation];
+                
                 if (mutableImageCollection && ![mutableImageCollection count]) {
                     [UtillsClass modalWithImageMBHUD: self.view
                                                 text: @"Sorry"
@@ -310,11 +320,8 @@ ImageLibary *libary;
                                                image: [UIImage imageNamed:@"wrong"]];
                     
                     [UtillsClass toggleAfterTimeout: self.view];
+                    return;
                 }
-                
-                // ** Hide Search modal window
-                [UtillsClass toggleLoadingIndicator: self.view
-                                        indicatorID: 102];
                 
                 //** Show Setting image modal, if internet connection is slow, so the user has feedback
                 //** Hide is implemented in delegate method "imageDownloadCompleate"
@@ -322,10 +329,6 @@ ImageLibary *libary;
                                                   withDescriptionText: @"This can take a while if the connection is slow"
                                                                  view: self.view
                                                           indicatorID: 104];
-                
-                //** Hide Navigation Bar
-                if(!self.menubar.hidden)
-                    [self.menubar hideWithAnimation];
             });
             
         }

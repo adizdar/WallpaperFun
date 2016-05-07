@@ -32,7 +32,6 @@
 		6028ED3A1CC0364000A855DF /* ImageLibary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6028ED391CC0364000A855DF /* ImageLibary.m */; };
 		6028ED3D1CC134D400A855DF /* SwipeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6028ED3C1CC134D400A855DF /* SwipeImageView.m */; };
 		6028ED401CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6028ED3F1CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.m */; };
-		60BDD7391CC52E8D00496C07 /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BDD7381CC52E8D00496C07 /* SearchView.m */; };
 		60BDD73C1CC6518C00496C07 /* CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BDD73B1CC6518C00496C07 /* CustomSearchBar.m */; };
 		60C8ED761CB90B13002BC9F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C8ED751CB90B13002BC9F6 /* main.m */; };
 		60C8ED791CB90B13002BC9F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C8ED781CB90B13002BC9F6 /* AppDelegate.m */; };
@@ -74,8 +73,6 @@
 		6028ED3C1CC134D400A855DF /* SwipeImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeImageView.m; sourceTree = "<group>"; };
 		6028ED3E1CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+UrlToImageConverter.h"; sourceTree = "<group>"; };
 		6028ED3F1CC2F49B00A855DF /* NSMutableArray+UrlToImageConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+UrlToImageConverter.m"; sourceTree = "<group>"; };
-		60BDD7371CC52E8D00496C07 /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
-		60BDD7381CC52E8D00496C07 /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
 		60BDD73A1CC6518C00496C07 /* CustomSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchBar.h; sourceTree = "<group>"; };
 		60BDD73B1CC6518C00496C07 /* CustomSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchBar.m; sourceTree = "<group>"; };
 		60C8ED711CB90B13002BC9F6 /* WallpaperFun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallpaperFun.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,8 +168,6 @@
 		60BDD7361CC52E7300496C07 /* SearchComponent */ = {
 			isa = PBXGroup;
 			children = (
-				60BDD7371CC52E8D00496C07 /* SearchView.h */,
-				60BDD7381CC52E8D00496C07 /* SearchView.m */,
 				60BDD73A1CC6518C00496C07 /* CustomSearchBar.h */,
 				60BDD73B1CC6518C00496C07 /* CustomSearchBar.m */,
 			);
@@ -507,7 +502,6 @@
 				6025F0301CBAC99C00133392 /* HomeScreenViewController.m in Sources */,
 				6028ED371CBFE6E400A855DF /* SingleImageView.m in Sources */,
 				6028ED311CBFA8E200A855DF /* UtillsClass.m in Sources */,
-				60BDD7391CC52E8D00496C07 /* SearchView.m in Sources */,
 				60BDD73C1CC6518C00496C07 /* CustomSearchBar.m in Sources */,
 				60C8ED791CB90B13002BC9F6 /* AppDelegate.m in Sources */,
 				60EC3BBE1CD2425B001464CB /* ModalView.m in Sources */,
